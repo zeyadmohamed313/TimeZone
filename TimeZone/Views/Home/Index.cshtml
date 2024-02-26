@@ -1,0 +1,74 @@
+﻿@model List<Product>;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/Home.css">
+    <link rel="stylesheet" href="~/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <title>TimeZone</title>
+</head>
+<body>
+    
+    <header>
+        
+        <div class="header-img">
+            <img src="Images/Home/timezone.png">
+        </div>
+        
+        <div class="header-nav">
+            <nav>
+                <a href="#">Home</a>
+                <a href="#">Shop</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+            </nav>
+        </div>
+        
+        <div class="header-icons">
+            <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+            <a href="#"> <i class="fa-regular fa-user"></i></a>
+            <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+        </div>
+
+    </header>
+
+
+
+    <div class="landing-page">
+        <div class="text">
+            <h1>Select Your New Perfect Style </h1>
+            <span class="text-span">Welcome to our exquisite watch emporium, where time meets elegance. Explore a curated collection of precision timepieces that blend craftsmanship and style seamlessly. From classic designs to avant-garde innovations, our watch store caters to aficionados who appreciate the artistry of every ticking second.</span>
+            
+            <a href="#" style="text-decoration:none">
+                <div class="btn">
+                    <span>Shop Now</span>
+                </div>
+            </a>
+        </div>
+
+        <div class="img">
+            <img src="Images/Home/Watch.png">
+        </div>
+    </div>
+
+    <div class="new-arrival">
+        <h1>New Arrival</h1>
+        
+        <div class="items-container">
+           <div class="item">
+               @foreach(var product in Model){
+                <img src="data:image/png;base64,@Convert.ToBase64String(product.Img)" alt="Product Image" />
+                <h4>@product.Name</h4>
+                <h5>$ @product.Price</h5>
+               }
+            </div>
+        </div>
+        
+    </div>
+    <script src="~/js/site.js"></script>
+</body>
+</html>

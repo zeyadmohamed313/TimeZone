@@ -1,0 +1,61 @@
+﻿@model List<Category>  // Assuming Product model has properties like Name, Description, StockQuantity, Price, Img, and CategoryId
+@{
+    var Categories = ViewData["Category"] as List<Category>;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/Admin/AddProduct.css">
+    <link rel="stylesheet" href="~/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    
+    <title>Add Product</title>
+</head>
+<body>
+    <header>
+        <h1>Add Product</h1>
+    </header>
+
+    <nav>
+        <a href="/Admin">Home</a>
+        <a href="/Admin/Products">Products</a>
+        <a href="/Admin/Categories">Categories</a>
+        <!-- Add more links as needed -->
+    </nav>
+
+    <div class="form-container">
+        <form action="/Admin/SaveAddedProduct" method="post" enctype="multipart/form-data">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="Name" required>
+
+            <label for="Description">Description:</label>
+            <textarea id="Description" name="Description" rows="4" required></textarea>
+
+            <label for="stockQuantity">Stock Quantity:</label>
+            <input type="number" id="stockQuantity" name="StockQuantity" min="0" required>
+
+            <label for="Price">Price:</label>
+            <input type="number" id="Price" name="Price" min="0.01" step="0.01" required>
+
+            <label for="image">Image:</label>
+            <input type="file" id="Img" name="Img" accept="Img/*" required>
+
+            <label for="Category">Category:</label>
+            <select id="Category" name="CategoryId" required>
+                <!-- Populate this dropdown with available categories from your database -->
+                @for(int i=0;i<Categories.Count;i++){
+                <option value="@Categories[i].Id">@Categories[i].Name</option>
+                <!-- Add more options as needed -->
+                }
+            </select>
+
+            <button type="submit">Add Product</button>
+        </form>
+    </div>
+</body>
+</html>

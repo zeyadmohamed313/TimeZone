@@ -1,0 +1,65 @@
+﻿@model List<BusinessLogicLayer.ViewModels.ProductViewModel>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/Admin/Products.css">
+    <link rel="stylesheet" href="~/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+  
+    <title>Products</title>
+</head>
+<body>
+    <header class="header-product">
+        <h1>Product Management</h1>
+    </header>
+
+    <nav>
+        <a href="/Admin">Home</a>
+        <a href="/Admin/Products">Products</a>
+        <a href="/Admin/Categories">Categories</a>
+    </nav>
+
+    <div class="table-container">
+        <table class="product-table">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var product in Model)
+                {
+                    <tr>
+                        <td class="product-image">
+                            <img src="data:image/png;base64,@Convert.ToBase64String(product.Img)" alt="Product Image" />
+                        </td>
+                        <td class="product-name">@product.Name</td>
+                        <td class="product-actions">
+                            <a class="update-button" href="/Admin/UpdateProduct/@product.Id">Update</a>
+                            <a class="delete-button" href="/Admin/DeleteProduct/@product.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+
+    <a href="/Admin/AddProduct">
+    <div class="add-product" style="color:white">
+        Add Product
+    </div>
+    </a>
+
+    <footer>
+        &copy; 2024 Your Company. All rights reserved.
+    </footer>
+</body>
+</html>
