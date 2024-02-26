@@ -21,6 +21,8 @@ namespace DataAccessLayer.Models
 		[Required]
 		public decimal Price { get; set; }
 		[Required]
+		public bool IsPopularNow { get; set; } = false;
+		[Required]
 		public byte[] Img {  get; set; }
 		[Required]
 		public int CategoryId {  get; set; }

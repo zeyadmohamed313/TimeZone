@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="~/css/Home.css">
     <link rel="stylesheet" href="~/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/Home.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
@@ -56,19 +56,81 @@
     </div>
 
     <div class="new-arrival">
+
         <h1>New Arrival</h1>
         
         <div class="items-container">
            <div class="item">
-               @foreach(var product in Model){
-                <img src="data:image/png;base64,@Convert.ToBase64String(product.Img)" alt="Product Image" />
-                <h4>@product.Name</h4>
-                <h5>$ @product.Price</h5>
-               }
+                <img src="/Images/Home/Arrival1.png" alt="Product Image" />
+                <h4>Thermo Ball Etip Gloves</h4>
+                <h5>$ 55.23</h5>
+            </div>
+
+            <div class="item">
+                <img src="/Images/Home/Arrival2.png" alt="Product Image" />
+                <h4>Thermo Ball Etip Gloves</h4>
+                <h5>$ 55.23</h5>
+            </div>
+
+            <div class="item">
+                <img src="/Images/Home/Arrival3.png" alt="Product Image" />
+                <h4>Thermo Ball Etip Gloves</h4>
+                <h5>$ 55.23</h5>
             </div>
         </div>
+
         
     </div>
+
+    <div class="second-arrival">
+        <div class="item">
+            <img src="/Images/Home/Arrival7.webp" alt="Product Image" />
+        </div>
+    </div>
+
+
+    <div class="popular-items">
+       <div class="text">
+          <h1>Popular Items</h1>
+          <span>Explore our curated collection of popular items, carefully selected for their quality and style, to discover the latest trends and timeless classics in one convenient section</span>
+		</div>
+       
+        <div class="items-space">
+           @foreach(var product in Model){
+              <div class="item">
+                    <a href="#">
+                        <img src="data:image/png;base64,@Convert.ToBase64String(product.Img)" alt="Product Image" />
+                    </a>
+                         <h4>@product.Name</h4>
+                         <h5>$ @product.Price</h5>
+                         <div class="overlay"></div>
+                         <div class="addtocart"><span>Add To Cart</span></div>
+                    </div>
+			    }
+        </div>
+    </div>
+
+    <div class="watchofchoice">
+        <img src="/Images/Home/choce_watch1.png.webp"/>
+        
+        <div class="text">
+            <h1>Watch Of Choice</h1>
+            <span>Unveil timeless elegance with our watch of choice collection, where precision meets style. Elevate your moments with meticulously crafted timepieces that blend sophistication and functionality effortlessly.</span>
+            <a href="#"><div class="showwatches"><p>Show Watches</p></div></a>
+        </div>
+
+    </div>
+
+    <div class="watchofchoice" style="margin-top:70px">
+        <div class="text" style="margin-right:70px;">
+            <h1>Watch Of Choice</h1>
+            <span>Unveil timeless elegance with our watch of choice collection, where precision meets style. Elevate your moments with meticulously crafted timepieces that blend sophistication and functionality effortlessly.</span>
+            <a href="#"><div class="showwatches"><p>Show Watches</p></div></a>
+        </div>
+        <img src="/Images/Home/choce_watch2.png.webp" />
+
+    </div>
+
     <script src="~/js/site.js"></script>
 </body>
 </html>

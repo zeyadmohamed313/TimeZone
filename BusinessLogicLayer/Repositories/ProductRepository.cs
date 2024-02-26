@@ -17,5 +17,11 @@ namespace BusinessLogicLayer.Repositories
 		{
 			_appContext = appContext;
 		}
-	}
+
+        public List<Product>? GetPopularProducts()
+		{
+			return _appContext.products.Where(p=>p.IsPopularNow==true).ToList();
+		}
+
+    }
 }

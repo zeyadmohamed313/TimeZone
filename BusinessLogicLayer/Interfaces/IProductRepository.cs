@@ -10,5 +10,6 @@ namespace BusinessLogicLayer.Interfaces
 {
 	public interface IProductRepository : IGenericRepository<Product>
 	{
+		List<Product>? GetPopularProducts();
 	}
 }

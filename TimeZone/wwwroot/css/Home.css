@@ -3,6 +3,11 @@
     padding: 0px;
     font-family: "Josefin Sans", sans-serif;
 }
+
+html{
+    margin:0;
+    padding:0;
+}
 /* Start Header */
 
 
@@ -39,7 +44,7 @@ header {
     font-size: 18px;
     text-decoration:none;
     color:black;
-    transition :color .5s ease-in-out;
+    transition :color .2s ease-in-out;
 
 }
 
@@ -82,7 +87,7 @@ header {
 }
 
 .zoomed {
-    transform: scale(1.2); /* Adjust the scale factor for zoom level */
+    transform: scale(1.4); /* Adjust the scale factor for zoom level */
 }
 
 
@@ -128,23 +133,30 @@ header {
 .new-arrival {
     font-size: 31px;
     margin-top: 250px;
-    margin-left: 70px;
+    margin-left: 30px;
+}
+.new-arrival h1{
+    margin-left:195px;
 }
 
 .new-arrival .items-container {
     height: auto;
     margin-top: 75px;
-    display:flex;
+    margin :75px 30px;
+    display: flex;
+    justify-content: center;
+    overflow:hidden;
 }
 
 .new-arrival .items-container .item{
     overflow:hidden;
     text-align:center;
+    margin: 0px 20px;
 }
 
 .new-arrival .items-container .item img{
     height:530px;
-    transition:transform .9s ease-in-out;
+    transition:transform .3s ease-in-out;
 }
 
 .new-arrival .items-container .item img:hover{
@@ -166,3 +178,171 @@ header {
 
 
 /*End New Arrival*/
+
+/*Starrt Second Arrival */
+
+.second-arrival{
+    margin:0;
+    padding:0;
+    margin-top:230px;
+    
+}
+
+.second-arrival .item{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+}
+
+.second-arrival .item img {
+        width: 80%;
+        height: 750px;
+        transition: transform 0.8s ease-in-out, filter 1s ease-in-out; /* Adjust the filter transition */
+}
+
+.second-arrival .item img:hover 
+{
+        transform: scale(1.02); 
+        filter: brightness(75%);
+}
+
+/* End Second Arrival*/
+
+/* Start Popular Items*/
+.popular-items{
+    margin-top:300px;
+}
+
+.popular-items .text{
+    width:50%;
+    text-align:center;
+    margin-left:400px;
+}
+
+.popular-items .text h1{
+    font-size:50px;
+}
+
+.popular-items .text span{
+    color:#777;
+    font-size:20px;
+    font-style:italic;
+}
+
+.popular-items .items-space{
+    margin-top:80px;
+    width:78%;
+    margin-left:12%; /*Get in the Middle*/
+}
+
+.popular-items .item{
+    margin-top:50px;
+    width: 30%; /* Set the width to approximately 30% to fit three items in a row */
+    display: inline-block;
+    text-align: center; /* Center the content within each item */
+    position:relative;
+}
+
+.popular-items .item .overlay{
+    position: absolute;
+    height: 7px;
+    width: 90%;
+    bottom: 153px;
+    left: 19px;
+    background-color: #fe2122;
+}
+
+.popular-items .item .img{
+    height:360px;
+    width:380px;
+}
+
+.popular-items .item h4{
+    color:#444444;
+    font-weight:700;
+    font-size:24px;
+    margin-top:50px;
+}
+
+.popular-items .item h5{
+    color: #ff2020;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.popular-items .item .addtocart {
+    position: absolute;
+    height: 70px;
+    width: 90%;
+    bottom: 86px;
+    left: 19px;
+    background-color: #fe2122;
+    color:white;
+    visibility:hidden;
+}
+
+.popular-items .item .addtocart:hover {
+    visibility:visible;
+    bottom:153px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+/* End Popular Items */
+
+/*Start Watch of Choice*/
+
+.watchofchoice{
+    margin-top: 100px;
+    padding: 90px;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.watchofchoice img{
+
+}
+
+.watchofchoice .text{
+    margin-left:100px;
+}
+
+.watchofchoice .text h1{
+        color: #000;
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 40px;
+}
+
+.watchofchoice .text span{
+    margin-bottom: 50px;
+    font-size: 17px;
+    color:#777;
+}
+
+.watchofchoice .text a{
+    text-decoration:none;
+}
+
+.watchofchoice .text a .showwatches{
+    margin-top:70px;
+    background-color:#ff2020;
+    height: 68px;
+    width: 239px;
+    color:white;
+    font-size:27px;
+    font-weight:600;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    transition: background-color .4s ease-in-out;
+}
+
+.watchofchoice .text a .showwatches:hover{
+    background-color:#444444;
+}
+
+/*End Watch of Choice*/

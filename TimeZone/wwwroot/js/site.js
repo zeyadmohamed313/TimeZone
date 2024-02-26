@@ -12,5 +12,5 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Set interval to toggle zoom every 3 seconds (adjust as needed)
-    setInterval(toggleZoom, 3000);
+    setInterval(toggleZoom, 1000);
 });

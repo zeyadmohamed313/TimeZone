@@ -1,4 +1,6 @@
-﻿using BusinessLogicLayer.UnitOfWork;
+﻿using AutoMapper;
+using BusinessLogicLayer.UnitOfWork;
+using BusinessLogicLayer.ViewModels;
 using DataAccessLayer.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -9,17 +11,21 @@ namespace TimeZone.Controllers
 	{
 		private readonly ILogger<HomeController> _logger;
 		private readonly IUnitOfWork _unitOfWork;
+		private readonly IMapper _mapper;
+
 		public HomeController(ILogger<HomeController> logger
-			, IUnitOfWork unitOfWork)
+			, IUnitOfWork unitOfWork, IMapper mapper)
 		{
 			_logger = logger;
 			_unitOfWork = unitOfWork;
+			_mapper = mapper;
 		}
 
 		public IActionResult Index()
 		{
-			var products = _unitOfWork.ProductRepository.GetAll();
-			return View(products);
+			var PopularProducts = _unitOfWork.ProductRepository.GetPopularProducts();
+		    var PopularProductsVM = _mapper.Map<List<ProductViewModel>>(PopularProducts);
+			return View(PopularProducts);
 		}
 
 		public IActionResult Privacy()

@@ -34,6 +34,8 @@ namespace PresentationLayer.Controllers
 
             return View(ProductViewModel); 
 		}
+
+
 		[HttpGet]
 		public IActionResult AddProduct() 
 		{
@@ -125,8 +127,8 @@ namespace PresentationLayer.Controllers
 
         [HttpGet]
         public IActionResult UpdateCategory(int Id)
-        {
-            var category = _unitOfWork.CategoryRepository.GetCategoryWithProducts(Id);
+        {   // here you dont need the list tho
+            var category = _unitOfWork.CategoryRepository.GetById(Id);
 			//ViewData["Products"];
             return View(category);
         }
