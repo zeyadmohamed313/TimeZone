@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +25,7 @@ namespace DataAccessLayer.Models
 		public bool IsPopularNow { get; set; } = false;
 		[Required]
 		public byte[] Img {  get; set; }
+		public DateTime InsertionTime { get; set; }
 		[Required]
 		public int CategoryId {  get; set; }
 

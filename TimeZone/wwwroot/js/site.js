@@ -13,4 +13,29 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Set interval to toggle zoom every 3 seconds (adjust as needed)
     setInterval(toggleZoom, 1000);
+
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    var scrollToTopBtn = document.getElementById("scrollToTopBtn");
+
+    scrollToTopBtn.addEventListener("click", function () {
+        scrollToTop();
+    });
+
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+
+    // Show/hide the scroll-to-top button based on scroll position
+    window.addEventListener("scroll", function () {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            scrollToTopBtn.style.display = "block";
+        } else {
+            scrollToTopBtn.style.display = "none";
+        }
+    });
 });

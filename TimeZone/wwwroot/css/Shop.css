@@ -1,0 +1,13 @@
+﻿.shop-landing-page{
+    width:100%;
+    height:700px;
+    background-image:url('../Images/Shop/Landing.jpeg');
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.shop-landing-page {
+    color:#0b1c39;
+    font-size:70px;
+}

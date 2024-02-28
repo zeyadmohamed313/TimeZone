@@ -1,4 +1,32 @@
-﻿body {
+﻿
+:root{
+    --main-color:#ff2020;
+}
+
+/* Track */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background-color: #808080; /* or any color you prefer */
+    border-radius: 5px;
+    transition: background-color .3s ease-in-out;
+}
+
+    /* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+     background-color: var(--main-color); /* darker color on hover */
+
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1; /* or any color you prefer */
+}
+
+body {
     margin: 0px;
     padding: 0px;
     font-family: "Josefin Sans", sans-serif;
@@ -319,7 +347,7 @@ header {
 
 .watchofchoice .text span{
     margin-bottom: 50px;
-    font-size: 17px;
+    font-size: 20px;
     color:#777;
 }
 
@@ -346,3 +374,166 @@ header {
 }
 
 /*End Watch of Choice*/
+
+/*Start Features*/
+
+.features{
+  position:relative;
+  height:200px;
+}
+
+.features .bar{
+    width:80%;
+    position:absolute;
+    left:50%;
+    height:200px;
+    background-color:#ea0000;
+    transform:translate(-50%,50%);
+    color:white;
+    display:flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.features .bar span{
+    font-size: 16px;
+    color: #d3d1d1;
+}
+
+.features .bar i{
+    font-size:40px;
+}
+
+.features .bar .item{
+    margin-right:20px;
+    margin-left:30px;
+    width:350px;
+}
+
+/*End Features*/
+
+/*Start Footer*/
+
+.footer {
+    background-color: white;
+    height: 300px;
+    width: 100px;
+    display: block;
+    margin-top: 300px;
+    width: 90%;
+    margin-left: 146px;
+}
+
+.footer .part{
+    display: inline-block;
+    width: 23%;
+    line-height: 24px;
+    font-size: 19px;
+}
+
+.footer img{
+    height:88px;
+    display:block;
+    margin-bottom:39px;
+}
+
+.footer span{
+    color:#868c98;
+}
+
+.footer .part h4{
+        color: #000;
+    font-size: 20px;
+    font-weight: 500;
+    text-transform: capitalize;
+    margin-left:10px;
+    margin-left: 34px;
+    font-size: 26px;
+
+}
+
+.footer .part nav{
+    list-style-type:none;
+    margin-left:35px;
+}
+
+.footer .part nav a{
+    display:block;
+    text-decoration:none;
+    color: #868c98;
+    font-weight: 300;
+    line-height:2;
+    transition: margin-left .3s ease-in-out , color .3s ease-in-out;
+}
+
+.footer .part nav a:hover{
+    color:var(--main-color);
+    margin-left:4px;
+}
+
+/* End Footer */
+
+/*Start Last*/
+
+.last{
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    margin-top:200px;
+    margin-bottom:50px;
+}
+
+.last .text p{
+    color: #888888;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 2;
+    margin-bottom: 20px;
+}
+
+
+
+.last .icon a{
+    text-decoration:none;
+    color:black;
+}
+
+.last .icon i{
+    margin:0px 6px;
+    transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.last .icon i:hover{
+     color: red;
+    transform: rotate(180deg);
+}
+
+/*End Last*/
+
+/*Start Floating icon*/
+
+.floating-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #e30213;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.floating-icon img {
+    width: 30px; 
+    height: 30px;
+    display: block;
+    margin: auto;
+
+}
+
+#scrollToTopBtn.hidden {
+    opacity: 0;
+}
+
+
+/*End Floating Icon*/
