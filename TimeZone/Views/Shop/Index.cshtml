@@ -1,4 +1,7 @@
 ﻿@model List<Product>;
+@{
+    var Categories = ViewData["Categories"] as List<Category>;
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,6 +42,69 @@
     <div class="shop-landing-page">
         <h1>Watch Shop</h1>
     </div>
+
+
+
+
+
+
+    <div class="shop-div">
+        <!-- Filtering Form -->
+        <label class="shop-label" for="CategoryId">Category:</label>
+        <select class="shop-select" id="CategoryId" name="CategoryId">
+            <option value="">All Categories</option>
+            @foreach (var category in Categories)
+            {
+                <option value="@category.Id">@category.Name</option>
+            }
+        </select>
+
+        <label for="minPrice">Min Price:</label>
+        <input type="number" id="MinPrice" name="MinPrice" min="0">
+
+        <label for="maxPrice">Max Price:</label>
+        <input type="number" id="MaxPrice" name="MaxPrice" min="0">
+
+        <button class="shop-button" id="applyFilters">Apply Filters</button>
+    </div>
+
+    <div id="product-list" class="product-list">
+        <!-- Display filtered products -->
+        @Html.Partial("_filterProducts")
+    </div>
+
+    <div class="pagination">
+        <!-- Pagination controls -->
+        <!-- You may use a library or implement your own pagination controls -->
+    </div>
+
+   <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#applyFilters").click(function () {
+                var categoryId = $("#CategoryId").val();
+                var minPrice = $("#MinPrice").val();
+                var maxPrice = $("#MaxPrice").val();
+
+                // Option 1: Update partial view using AJAX (example)
+                $.ajax({
+                    url: "/Shop/FilterProducts", // Replace with your controller and action URL
+                    data: {
+                        categoryId: categoryId,
+                        minPrice: minPrice,
+                        maxPrice: maxPrice
+                    },
+                    success: function (data) {
+                        $("#product-list").html(data);
+                    }
+                });
+
+                // Option 2: Redirect to partial view action with parameters (example)
+                // window.location.href = "/Home/PartialViewWithFilters?categoryId=" + categoryId + "&minPrice=" + minPrice + "&maxPrice=" + maxPrice;
+            });
+        });
+    </script>
 
 
 

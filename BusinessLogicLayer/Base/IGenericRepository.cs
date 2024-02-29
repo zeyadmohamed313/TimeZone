@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BusinessLogicLayer.Specifications;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,7 @@ namespace BusinessLogicLayer.Base
 		Task Add(T entity);
 		Task Update(T entity);
 		void Delete(T entity);
+		List<T> GetWithSpecifications(Specifications<T>? specifications);
 	}
 
 }

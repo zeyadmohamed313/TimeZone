@@ -11,3 +11,46 @@
     color:#0b1c39;
     font-size:70px;
 }
+
+
+.shop-div {
+    margin: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Label styling */
+.shop-label {
+    margin-right: 10px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Select styling */
+.shop-select, input[type="number"] {
+    padding: 8px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    width: 100px;
+}
+
+/* Button styling */
+.shop-button {
+    padding: 10px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+    /* Hover effect on the button */
+    .shop-button:hover {
+        background-color: #45a049;
+    }

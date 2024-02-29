@@ -1,0 +1,17 @@
+﻿<div class="popular-items">
+    
+    <div class="items-space">
+        @foreach (var product in Model)
+        {
+            <div class="item">
+                <a href="#">
+                    <img src="data:image/png;base64,@Convert.ToBase64String(product.Img)" alt="Product Image" />
+                </a>
+                <h4>@product.Name</h4>
+                <h5>$ @product.Price</h5>
+                <div class="overlay"></div>
+                <div class="addtocart"><span>Add To Cart</span></div>
+            </div>
+        }
+    </div>
+</div>

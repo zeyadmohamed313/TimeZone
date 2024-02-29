@@ -1,5 +1,6 @@
 ﻿
 
+using BusinessLogicLayer.Specifications;
 using DataAccessLayer.Context;
 using System.Data.Entity;
 
@@ -36,5 +37,11 @@ namespace BusinessLogicLayer.Base
 		{
 			return  _appContext.Set<T>().Find(id);
 		}
-	}
+
+        public List<T> GetWithSpecifications(Specifications<T>? specifications)
+		{
+			return SpecificationQueryBuilder.GetQuery(_appContext.Set<T>(),specifications).ToList();
+		}
+
+    }
 }
