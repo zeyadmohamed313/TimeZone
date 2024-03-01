@@ -264,6 +264,8 @@ header {
     margin-left:12%; /*Get in the Middle*/
 }
 
+
+
 .popular-items .item{
     margin-top:50px;
     width: 30%; /* Set the width to approximately 30% to fit three items in a row */
@@ -537,3 +539,36 @@ header {
 
 
 /*End Floating Icon*/
+
+#loadingSpinner {
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.spinner {
+    border: 16px solid #d3d1d1;
+    border-top: 16px solid #fe2122;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+

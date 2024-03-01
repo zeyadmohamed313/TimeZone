@@ -1,0 +1,195 @@
+﻿@model BusinessLogicLayer.ViewModels.LoginViewModel;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/Home.css">
+    <link rel="stylesheet" href="~/css/Shop.css">
+    <link rel="stylesheet" href="~/css/About.css">
+    <link rel="stylesheet" href="~/css/Login.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <title>Login</title>
+</head>
+<body>
+    <div id="loadingSpinner" style="display: none;">
+        <div class="spinner"></div>
+    </div>
+
+
+    <header>
+
+        <div class="header-img">
+            <img src="Images/Home/timezone.png">
+        </div>
+
+        <div class="header-nav">
+            <nav>
+                <a href="/Home">Home</a>
+                <a href="/Shop">Shop</a>
+                <a href="/About">About</a>
+                <a href="#">Contact</a>
+            </nav>
+        </div>
+
+        <div class="header-icons">
+            <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+            <a href="/Account"> <i class="fa-regular fa-user"></i></a>
+            <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+        </div>
+
+    </header>
+
+
+    <div class="shop-landing-page">
+        <h1>Login</h1>
+    </div>
+
+
+  <div class="login-container">
+    <div class="shape">
+        <div class="text">
+        <h2 style="text-align:center;">New To Our Shop ?</h2>
+        <span>If you don't have an account, sign up and enjoy a seamless experience with our services.</span>
+                <a href="#">
+                    <div class="btn">
+                        Create An Account
+                    </div>
+                </a>
+        </div>
+    </div>
+     <div class="signin">
+
+            <h1>
+                Welcome Back !
+                Please Sign in now
+            </h1>
+        <div class="form">
+                <form asp-action="TryLogin" asp-controller="Account" method="post" id="myForm" data-ajax="true" data-ajax-method="post" data-ajax-mode="replace" data-ajax-update="#myForm">
+                    <div>
+                        <input asp-for="Name" type="text" id="username" name="Name" placeholder="UserName" required>
+                        <div style="color:red; margin-top:20px;">
+                            <span asp-validation-for="Name"></span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <input asp-for="Password" type="password" id="password" name="Password" placeholder="Password" required>
+                        <div style="color:red; margin-top:20px;">
+                            <span asp-validation-for="Password"></span>
+                        </div>
+                    </div>
+
+                    <div style="margin-top:30px;">
+                        <input asp-for="RememberMe" type="checkbox" id="RememberMe" name="RememberMe" value="RememberMe" style="width:3%;">
+                        <label asp-for="RememberMe"> RememberMe</label><br>
+                    </div>
+
+                    <button class="login-btn" type="submit">Login</button>
+                </form>
+
+        </div>
+       </div>
+        
+  </div>
+
+
+
+
+
+
+
+
+    <div class="features">
+        <div class="bar">
+
+            <div class="item">
+                <i class="fa-solid fa-box"></i>
+                <h3>Free Shipping Method</h3>
+                <span>aorem ixpsacdolor sit ameasecur adipisicing elitsf edasd.</span>
+            </div>
+
+            <div class="item">
+                <i class="fa-solid fa-lock"></i>
+                <h3>Secure Shipping Method</h3>
+                <span>aorem ixpsacdolor sit ameasecur adipisicing elitsf edasd.</span>
+            </div>
+
+            <div class="item">
+                <i class="fa-solid fa-shield-halved"></i>
+                <h3>Secure Payment System</h3>
+                <span>aorem ixpsacdolor sit ameasecur adipisicing elitsf edasd.</span>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="part">
+            <img src="/Images/Home/timezone.png" />
+            <span>Asorem ipsum adipolor sdit amet, consectetur adipisicing elitcf sed do eiusmod tem.</span>
+        </div>
+
+        <div class="part">
+            <h4>Quick Links</h4>
+
+            <nav>
+                <a href="#">About</a>
+                <a href="#">Offers & Discounts</a>
+                <a href="#">Get Coupon</a>
+                <a href="#">Contact Us</a>
+            </nav>
+        </div>
+
+        <div class="part">
+            <h4>New Products</h4>
+
+            <nav>
+                <a href="#">About</a>
+                <a href="#">Offers & Discounts</a>
+                <a href="#">Get Coupon</a>
+                <a href="#">Contact Us</a>
+            </nav>
+        </div>
+
+        <div class="part">
+            <h4>Support</h4>
+
+            <nav>
+                <a href="#">Frequently Asked Questions</a>
+                <a href="#">Offers & Discounts</a>
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Privacy Policy</a>
+            </nav>
+        </div>
+    </div>
+
+    <div class="last">
+        <div class="text">
+            <p>&copy; 2024 Your Company Name. All rights reserved.</p>
+        </div>
+
+        <div class="icon">
+            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+        </div>
+    </div>
+
+    <!-- Floating icon -->
+    <div class="floating-icon" id="scrollToTopBtn">
+        <img src="/Images/Home/scroll-to-top.png" alt="Scroll to Top">
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+
+
+    <script src="~/js/site.js"></script>
+</body>
+</html>

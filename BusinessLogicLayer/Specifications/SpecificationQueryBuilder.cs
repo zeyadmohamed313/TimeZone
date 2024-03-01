@@ -15,12 +15,13 @@ namespace BusinessLogicLayer.Specifications
         {
             var query = InputQuery;
 
-            if( query != null )
+            if( specifications.Criteria != null )
             {
                 // Criteria is used with where 
                 query = query.Where(specifications.Criteria);
-            }
 
+            }
+            
             if(specifications.Includes!=null)
             {
                 query = specifications.Includes.Aggregate(query,(Current,Include)=>Current.Include(Include));

@@ -11,7 +11,7 @@ namespace BusinessLogicLayer.Specifications
     {
         public Specifications() { }
 
-        public Specifications(Expression<Func<TEntity,bool>> criteria) 
+        public Specifications(Expression<Func<TEntity,bool>>? criteria) 
         {
             Criteria = criteria;
         }

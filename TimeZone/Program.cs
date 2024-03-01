@@ -7,6 +7,8 @@ using BusinessLogicLayer.Base;
 using BusinessLogicLayer.AutoMapper;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using DataAccessLayer.Models.Identity;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,7 +22,16 @@ builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
 builder.Services.AddTransient<IOrderRepository, OrderRepository>();
 builder.Services.AddTransient<IShoppingCartRepository, ShoppingCartRepository>();
 builder.Services.AddAutoMapper(typeof(MappingProfile));
-
+// Add services to the container.
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+{
+    // Configure Identity options if needed
+    options.Password.RequireDigit = true;
+    options.Password.RequiredLength = 8;
+    // Add other options...
+})
+.AddEntityFrameworkStores<AppDbContext>() // Use your DbContext
+.AddDefaultTokenProviders();
 
 var app = builder.Build();
 

@@ -1,0 +1,149 @@
+﻿.login-container {
+    display: flex;
+    margin-top: 200px;
+    background-color: white;
+    height: 600px;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 242px;
+}
+
+
+
+.shape {
+    height: 100%;
+    width: 32%;
+    background: linear-gradient(to right, #af8dac, #61445f);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+}
+
+.shape .text{
+    width:80%;
+    text-align:center;
+}
+
+.shape .text h2{
+    font-size: 29px;
+    font-weight: 700;
+    line-height: 35px;
+    color: #fff;
+    margin-bottom: 27px;
+}
+
+.shape .text span{
+    
+        font-weight: 500;
+    text-align: center;
+    font-style: italic;
+}
+
+.shape .text a{
+    text-decoration:none;
+    display:block;
+    color:white;
+}
+
+.shape .text a .btn{
+    background-color:transparent;
+    border: solid 1px white;
+    height:50px;
+    width:100px;
+    margin:50px;
+    height: 50px;
+    width: 200px;
+    border-radius: 5px;
+    margin-left: 113px;
+    margin-top: 50px;
+    font-size: 20px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    transition:background-color .3s ease-in-out , color .3s ease-in-out;
+}
+
+.shape .text a .btn:hover {
+    background-color:white;
+    color:red;
+}
+
+
+
+
+.signin{
+    height:75%;
+    width:471px;
+}
+
+.signin h1{
+    width:65%;
+    margin-bottom:100px;
+}
+ 
+
+input{
+    width:100%;
+}
+
+#username {
+    width:75%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    outline: none;
+    font-size: 16px;
+    color: #555;
+}
+
+#username:focus {
+    border-bottom: 2px solid #000;
+}
+
+
+#username::placeholder {
+    color: #999;
+}
+
+#password {
+    width: 75%;
+    margin-top: 20px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    outline: none;
+    font-size: 16px;
+    color: #555;
+    transition: border-bottom .0s ease-in-out;
+}
+
+#password:focus {
+    border-bottom: 2px solid #000;
+}
+
+
+#password::placeholder {
+  color: #999;
+}
+
+button{
+    margin:38px;
+    margin-left:100px;
+    height:50px;
+    width:120px;
+    background-color:red;
+    border :solid 1px white;
+    font-size:20px;
+    cursor:pointer;
+    transition:background-color .3s ease-in-out;
+    color:white;
+    font-style:italic;
+}
+
+button:hover{
+    background-color:black;
+}

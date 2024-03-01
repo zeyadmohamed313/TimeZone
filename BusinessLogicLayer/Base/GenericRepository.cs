@@ -40,7 +40,7 @@ namespace BusinessLogicLayer.Base
 
         public List<T> GetWithSpecifications(Specifications<T>? specifications)
 		{
-			return SpecificationQueryBuilder.GetQuery(_appContext.Set<T>(),specifications).ToList();
+            return SpecificationQueryBuilder.GetQuery(_appContext.Set<T>(), specifications).ToList();
 		}
 
     }

@@ -16,24 +16,29 @@
     <title>Shopping</title>
 </head>
 <body>
+
+    <div id="loadingSpinner" style="display: none;">
+        <div class="spinner"></div>
+    </div>
+
     <header>
 
         <div class="header-img">
             <img src="Images/Home/timezone.png">
         </div>
-
+        
         <div class="header-nav">
             <nav>
                 <a href="/Home">Home</a>
                 <a href="/Shop">Shop</a>
-                <a href="#">About</a>
+                <a href="/About">About</a>
                 <a href="#">Contact</a>
             </nav>
         </div>
 
         <div class="header-icons">
             <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
-            <a href="#"> <i class="fa-regular fa-user"></i></a>
+            <a href="Account"> <i class="fa-regular fa-user"></i></a>
             <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
         </div>
 
@@ -47,9 +52,10 @@
 
 
 
-
+   <div class="shop-form">
     <div class="shop-div">
         <!-- Filtering Form -->
+        <div>
         <label class="shop-label" for="CategoryId">Category:</label>
         <select class="shop-select" id="CategoryId" name="CategoryId">
             <option value="">All Categories</option>
@@ -58,14 +64,19 @@
                 <option value="@category.Id">@category.Name</option>
             }
         </select>
+        </div>
 
-        <label for="minPrice">Min Price:</label>
-        <input type="number" id="MinPrice" name="MinPrice" min="0">
+        <div>
+        <label class="shop-label" for="minPrice">Min Price:</label>
+        <input class="shop-input" type="number" id="MinPrice" name="MinPrice" min="0">
+        </div>
 
-        <label for="maxPrice">Max Price:</label>
-        <input type="number" id="MaxPrice" name="MaxPrice" min="0">
-
-        <button class="shop-button" id="applyFilters">Apply Filters</button>
+        <div>
+        <label class="shop-label" for="maxPrice">Max Price:</label>
+            <input class="shop-input" type="number" id="MaxPrice" name="MaxPrice" min="0">
+        </div>
+        <button class="shop-button" style="display:block;" id="applyFilters">Apply Filters</button>
+    </div>
     </div>
 
     <div id="product-list" class="product-list">
@@ -192,6 +203,7 @@
     <div class="floating-icon" id="scrollToTopBtn">
         <img src="/Images/Home/scroll-to-top.png" alt="Scroll to Top">
     </div>
+   
     <script src="~/js/site.js"></script>
 </body>
 </html>

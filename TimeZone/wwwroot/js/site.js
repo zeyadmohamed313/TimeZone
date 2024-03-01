@@ -39,3 +39,12 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
+window.addEventListener('beforeunload', function (e) {
+    var loadingSpinner = document.getElementById('loadingSpinner');
+    loadingSpinner.style.display = 'flex';
+
+    setTimeout(function () {
+        loadingSpinner.style.display = 'none';
+    }, 3000); // 3000 milliseconds = 3 seconds
+});

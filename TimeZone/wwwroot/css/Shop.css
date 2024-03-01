@@ -12,45 +12,91 @@
     font-size:70px;
 }
 
+.product-list {
+    margin-left: 170px;
+    margin-top: 20px;
+}
+
+.shop-form {
+    position: relative;
+}
 
 .shop-div {
-    margin: 20px;
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    position: absolute;
     background-color: #f9f9f9;
+    width: 60%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
+    border: solid rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-left: 20%;
+    margin-top: 100px;
 }
 
-/* Label styling */
 .shop-label {
-    margin-right: 10px;
+    display: block;
+    margin-bottom: 8px;
     font-weight: bold;
-    color: #333;
 }
 
-/* Select styling */
-.shop-select, input[type="number"] {
-    padding: 8px;
-    margin-right: 10px;
+.shop-select {
     border: 1px solid #ccc;
-    border-radius: 3px;
-    width: 100px;
-}
-
-/* Button styling */
-.shop-button {
     padding: 10px;
-    background-color: #4caf50;
-    color: #fff;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
+    transition: border-color 0.3s;
 }
 
-    /* Hover effect on the button */
+    .shop-select:hover {
+        border-color: #999;
+    }
+
+.shop-input {
+    padding: 8px;
+    margin-bottom: 16px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.shop-button {
+    background: linear-gradient(to right, #ff6a00, #ff2020);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.3s;
+    height: 47px;
+    margin-top:16px;
+    transition:transform .3s ease-in-out;
+}
+
     .shop-button:hover {
-        background-color: #45a049;
+        transform: scale(1.088);
+    }
+
+
+
+.shop-select {
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #ddd; 
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #fff; 
+    color: #333; 
+}
+
+    .shop-select option {
+        background-color: #fff; 
+        color: #333; 
+    }
+
+    .shop-select:hover,
+    .shop-select:focus {
+        border-color: #666; 
     }
