@@ -2,7 +2,7 @@
 
 using BusinessLogicLayer.Specifications;
 using DataAccessLayer.Context;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace BusinessLogicLayer.Base
 {
@@ -24,23 +24,23 @@ namespace BusinessLogicLayer.Base
 			 _appContext.Remove<T>(entity);
 		}
 
-		public  IEnumerable<T>? GetAll()
+		public async Task<IEnumerable<T>>? GetAll()
 		{
-			return  _appContext.Set<T>().ToList();
+			return await _appContext.Set<T>().ToListAsync();
 		}
 
 		public async Task Update(T entity)
 		{
 			 _appContext.Update<T>(entity);
 		}
-		public  T? GetById(int id)
+		public async Task<T>? GetById(int id)
 		{
-			return  _appContext.Set<T>().Find(id);
+			return await _appContext.Set<T>().FindAsync(id);
 		}
 
-        public List<T> GetWithSpecifications(Specifications<T>? specifications)
+        public async Task<List<T>>? GetWithSpecifications(Specifications<T>? specifications)
 		{
-            return SpecificationQueryBuilder.GetQuery(_appContext.Set<T>(), specifications).ToList();
+            return await SpecificationQueryBuilder.GetQuery(_appContext.Set<T>(), specifications).ToListAsync();
 		}
 
     }

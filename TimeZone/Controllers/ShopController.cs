@@ -1,10 +1,12 @@
 ﻿using BusinessLogicLayer.Specifications;
 using BusinessLogicLayer.UnitOfWork;
 using DataAccessLayer.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace PresentationLayer.Controllers
 {
+    [AllowAnonymous]
     public class ShopController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -12,16 +14,19 @@ namespace PresentationLayer.Controllers
         {
             _unitOfWork = unitOfWork;
         }
-        public IActionResult Index()
+		//[ResponseCache(Duration = 3600)]
+		public async Task<IActionResult> Index()
         {
-            var products = _unitOfWork.ProductRepository.GetAll();
-            ViewData["Categories"] = _unitOfWork.CategoryRepository.GetAll();
+
+            var products = await _unitOfWork.ProductRepository.GetAll();
+            ViewData["Categories"] = await _unitOfWork.CategoryRepository.GetAll();
 
             return View(products);
         }
 
         [HttpGet]
-        public IActionResult FilterProducts(int? CategoryId , decimal? MinPrice ,decimal? MaxPrice 
+		//[ResponseCache(Duration = 3600)]
+		public async Task<IActionResult> FilterProducts(int? CategoryId , decimal? MinPrice ,decimal? MaxPrice 
             ,bool SortAsc = true)
         {
             Specifications<Product> specifications;
@@ -31,8 +36,8 @@ namespace PresentationLayer.Controllers
             else
                 specifications = new FilterProductsDesc(CategoryId, MinPrice, MaxPrice);
 
-            var FilteredProducts = _unitOfWork.ProductRepository.GetWithSpecifications(specifications);
-
+            var FilteredProducts = await _unitOfWork.ProductRepository.GetWithSpecifications(specifications);
+            
             return PartialView("_filterProducts",FilteredProducts);
         }
     }

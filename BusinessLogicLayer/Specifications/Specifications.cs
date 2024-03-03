@@ -22,11 +22,16 @@ namespace BusinessLogicLayer.Specifications
 
         public Expression<Func<TEntity, object>>? OrderBy { get; private set; }
         public Expression<Func<TEntity, object>>? OrderByDesc { get; private set; }
+        public List<Expression<Func<TEntity, object>>>? ThenIncludes { get; } = new List<Expression<Func<TEntity, object>>>();
 
 
         protected void AddInclude(Expression<Func<TEntity, object>> includeExpression)
         {
             Includes?.Add(includeExpression);
+        }
+        protected void AddThenInclude(Expression<Func<TEntity, object>> thenIncludeExpression)
+        {
+            ThenIncludes?.Add(thenIncludeExpression);
         }
 
         protected void AddOrderBy(Expression<Func<TEntity, object>> orderExpression)

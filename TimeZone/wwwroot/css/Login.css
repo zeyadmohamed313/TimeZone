@@ -6,8 +6,9 @@
     width: 100%;
     justify-content: space-around;
     align-items: center;
-    margin-bottom: 242px;
+    margin-bottom: 700px;
 }
+
 
 
 
@@ -75,7 +76,7 @@
 
 .signin{
     height:75%;
-    width:471px;
+    width:600px;
 }
 
 .signin h1{
@@ -130,6 +131,30 @@ input{
   color: #999;
 }
 
+
+#in{
+    width: 75%;
+    margin-top: 0px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    outline: none;
+    font-size: 16px;
+    color: #555;
+    transition: border-bottom .0s ease-in-out;
+}
+
+    #in:focus {
+        border-bottom: 2px solid #000;
+    }
+
+
+    #in::placeholder {
+        color: #999;
+    }
+
+
 button{
     margin:38px;
     margin-left:100px;
@@ -141,7 +166,7 @@ button{
     cursor:pointer;
     transition:background-color .3s ease-in-out;
     color:white;
-    font-style:italic;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif, Tahoma, Geneva, Verdana, sans-serif;
 }
 
 button:hover{

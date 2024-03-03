@@ -308,17 +308,23 @@ header {
     bottom: 86px;
     left: 19px;
     background-color: #fe2122;
-    color:white;
+    color: white;
+    opacity: 0;
     visibility:hidden;
+    transition: opacity .3s ease-in-out;
 }
 
-.popular-items .item .addtocart:hover {
+.popular-items .item:hover .addtocart {
     visibility:visible;
-    bottom:153px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    bottom: 153px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
 }
+
+
+
 /* End Popular Items */
 
 /*Start Watch of Choice*/

@@ -31,6 +31,9 @@ namespace DataAccessLayer.Models
 
 		[ForeignKey(nameof(CategoryId))]
 		public Category Category { get; set; }
-		public List<OrderItem>? orderItems { get; set; }
+		[Required]
+		public int ShoppingCartId {  get; set; }
+		[ForeignKey("ShoppingCartId")]
+		public List<ShoppingCart>? ShoppingCarts { get; set; }
 	}
 }

@@ -2,11 +2,13 @@
 using BusinessLogicLayer.UnitOfWork;
 using BusinessLogicLayer.ViewModels;
 using DataAccessLayer.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace TimeZone.Controllers
 {
+	[AllowAnonymous]
 	public class HomeController : Controller
 	{
 		private readonly ILogger<HomeController> _logger;
@@ -21,11 +23,13 @@ namespace TimeZone.Controllers
 			_mapper = mapper;
 		}
 
-		public IActionResult Index()
+		//[ResponseCache(Duration = 3600)]
+		[AllowAnonymous]
+		public async Task<IActionResult> Index()
 		{
-			var PopularProducts = _unitOfWork.ProductRepository.GetPopularProducts();
-		    var PopularProductsVM = _mapper.Map<List<ProductViewModel>>(PopularProducts);
-			return View(PopularProducts);
+			var PopularProducts = await _unitOfWork.ProductRepository.GetPopularProducts();
+			var PopularProductsVM = _mapper.Map<List<ProductViewModel>>(PopularProducts);
+			return View(PopularProductsVM);
 		}
 
 		public IActionResult Privacy()

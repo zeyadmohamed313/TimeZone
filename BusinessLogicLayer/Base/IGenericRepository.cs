@@ -9,12 +9,12 @@ namespace BusinessLogicLayer.Base
 {
 	public interface IGenericRepository<T> where T : class
 	{
-		T GetById(int id);
-		IEnumerable<T> GetAll();
+		Task<T> GetById(int id);
+		Task<IEnumerable<T>> GetAll();
 		Task Add(T entity);
 		Task Update(T entity);
 		void Delete(T entity);
-		List<T> GetWithSpecifications(Specifications<T>? specifications);
+		Task<List<T>>? GetWithSpecifications(Specifications<T>? specifications);
 	}
 
 }

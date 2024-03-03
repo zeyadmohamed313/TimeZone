@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLogicLayer.Interfaces
 {
-	public interface IOrderRepository:IGenericRepository<Order>
-	{
-
-	}
+    public interface IFeedBackRepository:IGenericRepository<FeedBack>
+    {
+    }
 }

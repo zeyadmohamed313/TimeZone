@@ -1,7 +1,4 @@
-﻿@model List<Product>;
-@{
-    var Categories = ViewData["Categories"] as List<Category>;
-}
+﻿
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,30 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="~/css/all.min.css" />
     <link rel="stylesheet" href="~/css/Home.css">
-    <link rel="stylesheet" href="~/css/Shop.css"/>
+    <link rel="stylesheet" href="~/css/Shop.css">
+    <link rel="stylesheet" href="~/css/About.css">
+    <link rel="stylesheet" href="~/css/Contact.css">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
-    <title>Shopping</title>
+    <title>Contact</title>
 </head>
 <body>
-
     <div id="loadingSpinner" style="display: none;">
         <div class="spinner"></div>
     </div>
+
 
     <header>
 
         <div class="header-img">
             <img src="Images/Home/timezone.png">
         </div>
-        
+
         <div class="header-nav">
             <nav>
                 <a href="/Home">Home</a>
                 <a href="/Shop">Shop</a>
                 <a href="/About">About</a>
-                <a href="/Contact">Contact</a>
+                <a href="">Contact</a>
             </nav>
         </div>
 
@@ -55,78 +55,53 @@
 
     </header>
 
+
     <div class="shop-landing-page">
-        <h1>Watch Shop</h1>
+        <h1>Contact US</h1>
     </div>
 
 
+    <div class="map" style="display:flex;justify-content:center; margin-top:150px;">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d442359.72044403426!2d31.670534343652328!3d29.981288893031994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sar!2seg!4v1709418482534!5m2!1sar!2seg" width="1200" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
 
+    <div class="contact">
+        <div class="contact-form">
+            <h1>Contact Us</h1>
+            <form action="/Contact/SaveFeedBack" method="post">
+                <label for="contactName">Your Name:</label>
+                <input type="text" id="contactName" name="name" required>
 
+                <label for="contactEmail">Your Email:</label>
+                <input type="email" id="contactEmail" name="email" required>
 
-   <div class="shop-form">
-    <div class="shop-div">
-        <!-- Filtering Form -->
-        <div>
-        <label class="shop-label" for="CategoryId">Category:</label>
-        <select class="shop-select" id="CategoryId" name="CategoryId">
-            <option value="">All Categories</option>
-            @foreach (var category in Categories)
-            {
-                <option value="@category.Id">@category.Name</option>
-            }
-        </select>
+                <label for="contactSubject">Subject:</label>
+                <input type="text" id="contactSubject" name="subject" required>
+
+                <label for="contactMessage">Message:</label>
+                <textarea id="contactMessage" name="Massege" rows="4" required></textarea>
+
+                <button type="submit">Send Message</button>
+            </form>
+
+            
+        </div>
+        <div class="business-card">
+            <h2 class="name">John Doe</h2>
+            <p class="title">Web Developer</p>
+            <div class="contact-info">
+                <span class="fa fa-envelope"></span><a href="mailto:johndoe@example.com">johndoe@example.com</a>
+                <span class="fa fa-phone"></span><a href="tel:+1234567890">+1 234 567 890</a>
+                <span class="fa fa-map-marker-alt"></span><span>Buttonwood, California</span>
+                <span></span><span>Rosemead, CA 91770</span>
+            </div>
         </div>
 
-        <div>
-        <label class="shop-label" for="minPrice">Min Price:</label>
-        <input class="shop-input" type="number" id="MinPrice" name="MinPrice" min="0">
-        </div>
-
-        <div>
-        <label class="shop-label" for="maxPrice">Max Price:</label>
-            <input class="shop-input" type="number" id="MaxPrice" name="MaxPrice" min="0">
-        </div>
-        <button class="shop-button" style="display:block;" id="applyFilters">Apply Filters</button>
-    </div>
+        
     </div>
 
-    <div id="product-list" class="product-list">
-        <!-- Display filtered products -->
-        @Html.Partial("_filterProducts")
-    </div>
 
-    <div class="pagination">
-        <!-- Pagination controls -->
-        <!-- You may use a library or implement your own pagination controls -->
-    </div>
 
-   <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            $("#applyFilters").click(function () {
-                var categoryId = $("#CategoryId").val();
-                var minPrice = $("#MinPrice").val();
-                var maxPrice = $("#MaxPrice").val();
-
-                // Option 1: Update partial view using AJAX (example)
-                $.ajax({
-                    url: "/Shop/FilterProducts", // Replace with your controller and action URL
-                    data: {
-                        categoryId: categoryId,
-                        minPrice: minPrice,
-                        maxPrice: maxPrice
-                    },
-                    success: function (data) {
-                        $("#product-list").html(data);
-                    }
-                });
-
-                // Option 2: Redirect to partial view action with parameters (example)
-                // window.location.href = "/Home/PartialViewWithFilters?categoryId=" + categoryId + "&minPrice=" + minPrice + "&maxPrice=" + maxPrice;
-            });
-        });
-    </script>
 
 
 
@@ -214,7 +189,7 @@
     <div class="floating-icon" id="scrollToTopBtn">
         <img src="/Images/Home/scroll-to-top.png" alt="Scroll to Top">
     </div>
-   
+
     <script src="~/js/site.js"></script>
 </body>
 </html>

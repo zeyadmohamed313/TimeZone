@@ -13,11 +13,15 @@ namespace DataAccessLayer.Models
 	{
 		[Required]
 		public int Id { get; set; }
+		public decimal TotalPrice {  get; set; }
 		[Required]
 		public string  UserId {  get; set; }
 		[ForeignKey("UserId")]
 		public ApplicationUser User { get; set; }
 		
-		public List<Order>? OrderList { get; set; }
+		public List<Product>? OrderList { get; set; }
+		public decimal GetTotalPrice => OrderList!=null? OrderList.Where(orderItem => orderItem != null)
+                    .Sum(orderItem => orderItem.Price):0;    
 	}
+	
 }

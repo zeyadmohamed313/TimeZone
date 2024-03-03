@@ -1,0 +1,64 @@
+﻿@model List<FeedBack>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/Admin/Products.css">
+    <link rel="stylesheet" href="~/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
+    <title>FeedBack</title>
+</head>
+<body>
+    <header class="header-product">
+        <h1>FeedBack Management</h1>
+    </header>
+
+    <nav>
+        <a href="/Admin">Home</a>
+        <a href="/Admin/Products">Products</a>
+        <a href="/Admin/Categories">Categories</a>
+    </nav>
+
+    <div class="table-container">
+        <table class="product-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Subject</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="product-image">
+                            @item.Name
+                        </td>
+                        <td class="product-name">@item.Email</td>
+                        <td class="product-name">@item.Subject</td>
+
+                        <td class="product-actions">
+                            <a class="update-button" href="/Admin/ShowFeedBack/@item.Id">Show Message</a>
+                            <a class="delete-button" href="/Admin/DeleteProduct/@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+
+  
+
+    <footer>
+        &copy; 2024 Your Company. All rights reserved.
+    </footer>
+</body>
+</html>

@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -30,14 +31,25 @@
                 <a href="/Home">Home</a>
                 <a href="/Shop">Shop</a>
                 <a href="/About">About</a>
-                <a href="#">Contact</a>
+                <a href="/Contact">Contact</a>
             </nav>
         </div>
 
         <div class="header-icons">
             <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
-            <a href="/Account"> <i class="fa-regular fa-user"></i></a>
-            <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+            @if (!_signInManager.IsSignedIn(User))
+            {
+                <a href="/Account/Login"> <i class="fa-regular fa-user"></i></a>
+            }
+            else
+            {
+                <a href="/Account/LogOut"><i class="fa-solid fa-right-from-bracket"></i></a>
+            }
+            <a href="/Cart"><i class="fa-solid fa-cart-shopping"></i></a>
+            @if (User.IsInRole("Admin"))
+            {
+                <a href="/Admin"> <i class="fa-solid fa-hammer"></i></a>
+            }
         </div>
 
     </header>

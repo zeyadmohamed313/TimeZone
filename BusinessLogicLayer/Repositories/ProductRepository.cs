@@ -2,6 +2,7 @@
 using BusinessLogicLayer.Interfaces;
 using DataAccessLayer.Context;
 using DataAccessLayer.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,9 +19,9 @@ namespace BusinessLogicLayer.Repositories
 			_appContext = appContext;
 		}
 
-        public List<Product>? GetPopularProducts()
+        public async Task<List<Product>>? GetPopularProducts()
 		{
-			return _appContext.products.Where(p=>p.IsPopularNow==true).ToList();
+			return await _appContext.products.Where(p=>p.IsPopularNow==true).ToListAsync();
 		}
 
     }

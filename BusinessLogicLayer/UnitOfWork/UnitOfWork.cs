@@ -11,20 +11,21 @@ namespace BusinessLogicLayer.UnitOfWork
 	public class UnitOfWork : IUnitOfWork
 	{
 		public IProductRepository ProductRepository { get; private set; }
-		public IOrderRepository OrderRepository { get; private set; }
 		public ICategoryRepository CategoryRepository { get; private set; }
 		public IShoppingCartRepository ShoppingCartRepository { get; private set; }
+		public IFeedBackRepository FeedBackRepository { get; private set; }
 
 		private readonly AppDbContext _appDbContext;
 		// Inject the parameters
 		public UnitOfWork(AppDbContext appDbContext , IProductRepository productRepository , 
-			IOrderRepository orderRepository , ICategoryRepository categoryRepository , IShoppingCartRepository shoppingCartRepository)
+			  ICategoryRepository categoryRepository ,
+			  IShoppingCartRepository shoppingCartRepository , IFeedBackRepository feedBackRepository)
 		{
 			_appDbContext = appDbContext;
 			ProductRepository = productRepository;
-			OrderRepository = orderRepository;
 			CategoryRepository = categoryRepository;
 			ShoppingCartRepository = shoppingCartRepository;
+			FeedBackRepository = feedBackRepository;
 		}
 		public  void Commit()
 		{

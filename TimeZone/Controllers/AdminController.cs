@@ -26,10 +26,10 @@ namespace PresentationLayer.Controllers
 		}
 		#region Products
 		[HttpGet]
-        public IActionResult Products()
+        public async Task<IActionResult> Products()
 		{
 			
-			var products =_unitOfWork.ProductRepository.GetAll();
+			var products = await _unitOfWork.ProductRepository.GetAll();
 			var ProductViewModel = _mapper.Map<List<ProductViewModel>>(products);
 
             return View(ProductViewModel); 
@@ -37,15 +37,15 @@ namespace PresentationLayer.Controllers
 
 
 		[HttpGet]
-		public IActionResult AddProduct() 
+		public async Task<IActionResult> AddProduct() 
 		{
-			ViewData["Category"]=_unitOfWork.CategoryRepository.GetAll();
+			ViewData["Category"]=await _unitOfWork.CategoryRepository.GetAll();
 
 			return View();
 		}
 
 		[HttpPost]
-		public IActionResult SaveAddedProduct(Product product , IFormFile Img)// addimage here
+		public async Task<IActionResult> SaveAddedProduct(Product product , IFormFile Img)// addimage here
 		{
 
             if (Img != null && Img.Length > 0)
@@ -56,24 +56,24 @@ namespace PresentationLayer.Controllers
                     product.Img = stream.ToArray();
                 }
             }
-            _unitOfWork.ProductRepository.Add(product);
+            await _unitOfWork.ProductRepository.Add(product);
 			_unitOfWork.Commit();
 			return RedirectToAction("Products");
 		}
 
 		[HttpGet]
-		public IActionResult UpdateProduct(int Id) 
+		public async Task<IActionResult> UpdateProduct(int Id) 
 		{
-			var product = _unitOfWork.ProductRepository.GetById(Id);
-			ViewData["Category"]=_unitOfWork.CategoryRepository.GetAll();
+			var product = await _unitOfWork.ProductRepository.GetById(Id);
+			ViewData["Category"]= await _unitOfWork.CategoryRepository.GetAll();
             return View(product);
 		}
 
 		[HttpPost] 
-		public IActionResult SaveUpdatedProduct(Product product, IFormFile Img) 
+		public async Task<IActionResult> SaveUpdatedProduct(Product product, IFormFile Img) 
 		{ 
 			// save only updated ones 
-			var NotNullValues = _unitOfWork.ProductRepository.GetById(product.Id);
+			var NotNullValues =await _unitOfWork.ProductRepository.GetById(product.Id);
 			var img = NotNullValues.Img;
 			// Leave Null Values
 		    NotNullValues= _mapper.Map(product, NotNullValues);
@@ -103,10 +103,10 @@ namespace PresentationLayer.Controllers
 
         #region Category
         [HttpGet]
-        public IActionResult Categories()
+        public  async Task<IActionResult> Categories()
         {
-
-            var categories = _unitOfWork.CategoryRepository.GetAll();
+			 
+            var categories =  await _unitOfWork.CategoryRepository.GetAll();
             var CategoryViewModel = _mapper.Map<List<CategoryViewModel>>(categories);
 
             return View(CategoryViewModel);
@@ -118,17 +118,17 @@ namespace PresentationLayer.Controllers
         }
 
         [HttpPost]
-        public IActionResult SaveAddedCategory(Category category)// addimage here
+        public async Task<IActionResult> SaveAddedCategory(Category category)// addimage here
         {
-            _unitOfWork.CategoryRepository.Add(category);
+           await _unitOfWork.CategoryRepository.Add(category);
             _unitOfWork.Commit();
             return RedirectToAction("Categories");
         }
 
         [HttpGet]
-        public IActionResult UpdateCategory(int Id)
+        public async Task<IActionResult> UpdateCategory(int Id)
         {   // here you dont need the list tho
-            var category = _unitOfWork.CategoryRepository.GetById(Id);
+            var category =  await _unitOfWork.CategoryRepository.GetById(Id);
 			//ViewData["Products"];
             return View(category);
         }
@@ -147,6 +147,31 @@ namespace PresentationLayer.Controllers
             _unitOfWork.CategoryRepository.Delete(category);
             _unitOfWork.Commit();
             return RedirectToAction("Categories");
+        }
+
+
+
+        [HttpGet]
+        public async Task<IActionResult> ShowFeedBack(int Id)
+        {   // here you dont need the list tho
+            var FeedBack = await _unitOfWork.FeedBackRepository.GetById(Id);
+            //ViewData["Products"];
+            return View(FeedBack);
+        }
+        public IActionResult DeleteFeedBack(FeedBack feedBack)
+        {
+            _unitOfWork.FeedBackRepository.Delete(feedBack);
+            _unitOfWork.Commit();
+            return RedirectToAction("FeedBack");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> FeedBack()
+        {
+
+            var feedBacks = await _unitOfWork.FeedBackRepository.GetAll();
+
+            return View(feedBacks);
         }
         #endregion
     }

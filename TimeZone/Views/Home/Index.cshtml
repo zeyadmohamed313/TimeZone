@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<DataAccessLayer.Models.Identity.ApplicationUser> _signInManager
+@model List<BusinessLogicLayer.ViewModels.ProductViewModel>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -21,7 +25,7 @@
     <header>
         
         <div class="header-img">
-            <img src="Images/Home/timezone.png">
+            <img src="/Images/Home/timezone.png">
         </div>
         
         <div class="header-nav">
@@ -29,14 +33,27 @@
                 <a href="/Home">Home</a>
                 <a href="/Shop">Shop</a>
                 <a href="/About">About</a>
-                <a href="#">Contact</a>
+                <a href="/Contact">Contact</a>
             </nav>
         </div>
         
         <div class="header-icons">
             <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
-            <a href="/Account"> <i class="fa-regular fa-user"></i></a>
-            <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+            @if (!_signInManager.IsSignedIn(User))
+            {
+                <a href="/Account/Login"> <i class="fa-regular fa-user"></i></a>
+            }
+            else
+            {
+                <a href="/Account/LogOut"><i class="fa-solid fa-right-from-bracket"></i></a>
+            }
+
+            <a href="/Cart"><i class="fa-solid fa-cart-shopping"></i></a>
+            @if(User.IsInRole("Admin"))
+            {
+               <a href="/Admin"> <i class="fa-solid fa-hammer"></i></a>
+            }
+
         </div>
 
     </header>
@@ -104,13 +121,13 @@
         <div class="items-space">
            @foreach(var product in Model){
               <div class="item">
-                    <a href="#">
+                    <a href="/Cart/AddToCart/@product.Id">
                         <img src="data:image/png;base64,@Convert.ToBase64String(product.Img)" alt="Product Image" />
                     </a>
                          <h4>@product.Name</h4>
                          <h5>$ @product.Price</h5>
                          <div class="overlay"></div>
-                         <div class="addtocart"><span>Add To Cart</span></div>
+                    <a href="/Cart/AddToCart/@product.Id"><div class="addtocart"><span>Add To Cart</span></div></a>
                     </div>
 			    }
         </div>
@@ -122,7 +139,7 @@
         <div class="text">
             <h1>Watch Of Choice</h1>
             <span>Unveil timeless elegance with our watch of choice collection, where precision meets style. Elevate your moments with meticulously crafted timepieces that blend sophistication and functionality effortlessly.</span>
-            <a href="#"><div class="showwatches"><p>Show Watches</p></div></a>
+            <a href="/Shop"><div class="showwatches"><p>Show Watches</p></div></a>
         </div>
 
     </div>
@@ -131,7 +148,7 @@
         <div class="text" style="margin-right:70px;">
             <h1>Watch Of Choice</h1>
             <span>Unveil timeless elegance with our watch of choice collection, where precision meets style. Elevate your moments with meticulously crafted timepieces that blend sophistication and functionality effortlessly.</span>
-            <a href="#"><div class="showwatches"><p>Show Watches</p></div></a>
+            <a href="/Shop"><div class="showwatches"><p>Show Watches</p></div></a>
         </div>
         <img src="/Images/Home/choce_watch2.png.webp" />
 

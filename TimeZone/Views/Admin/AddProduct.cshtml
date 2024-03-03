@@ -1,4 +1,4 @@
-﻿@model List<Category>  // Assuming Product model has properties like Name, Description, StockQuantity, Price, Img, and CategoryId
+﻿@model List<Category>?  // Assuming Product model has properties like Name, Description, StockQuantity, Price, Img, and CategoryId
 @{
     var Categories = ViewData["Category"] as List<Category>;
 }
@@ -55,7 +55,7 @@
             <label for="Category">Category:</label>
             <select id="Category" name="CategoryId" required>
                 <!-- Populate this dropdown with available categories from your database -->
-                @for(int i=0;i<Categories.Count;i++){
+                @for(int i=0;i<Categories?.Count;i++){
                 <option value="@Categories[i].Id">@Categories[i].Name</option>
                 <!-- Add more options as needed -->
                 }

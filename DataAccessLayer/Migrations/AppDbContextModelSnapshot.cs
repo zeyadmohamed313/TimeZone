@@ -39,6 +39,35 @@ namespace DataAccessLayer.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("DataAccessLayer.Models.FeedBack", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Massege")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Subject")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("FeedBacks");
+                });
+
             modelBuilder.Entity("DataAccessLayer.Models.Identity.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
@@ -99,6 +128,9 @@ namespace DataAccessLayer.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("ShoppingCartId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
@@ -116,65 +148,9 @@ namespace DataAccessLayer.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.ToTable("AspNetUsers", (string)null);
-                });
-
-            modelBuilder.Entity("DataAccessLayer.Models.Order", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("OrderDate")
-                        .IsRequired()
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("ShoppingCartId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("TotalPrice")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
                     b.HasIndex("ShoppingCartId");
 
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("DataAccessLayer.Models.OrderItem", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrderId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("OrderItems");
+                    b.ToTable("AspNetUsers", (string)null);
                 });
 
             modelBuilder.Entity("DataAccessLayer.Models.Product", b =>
@@ -209,6 +185,9 @@ namespace DataAccessLayer.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<int>("ShoppingCartId")
+                        .HasColumnType("int");
+
                     b.Property<int>("StockQuantity")
                         .HasColumnType("int");
 
@@ -226,6 +205,9 @@ namespace DataAccessLayer.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<decimal>("TotalPrice")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -371,42 +353,28 @@ namespace DataAccessLayer.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("DataAccessLayer.Models.Order", b =>
+            modelBuilder.Entity("ProductShoppingCart", b =>
                 {
-                    b.HasOne("DataAccessLayer.Models.ShoppingCart", "ShoppingCart")
-                        .WithMany("OrderList")
-                        .HasForeignKey("ShoppingCartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Property<int>("ShoppingCartId")
+                        .HasColumnType("int");
 
-                    b.HasOne("DataAccessLayer.Models.Identity.ApplicationUser", "User")
-                        .WithMany("Orders")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Property<int>("ShoppingCartsId")
+                        .HasColumnType("int");
 
-                    b.Navigation("ShoppingCart");
+                    b.HasKey("ShoppingCartId", "ShoppingCartsId");
 
-                    b.Navigation("User");
+                    b.HasIndex("ShoppingCartsId");
+
+                    b.ToTable("ProductShoppingCart");
                 });
 
-            modelBuilder.Entity("DataAccessLayer.Models.OrderItem", b =>
+            modelBuilder.Entity("DataAccessLayer.Models.Identity.ApplicationUser", b =>
                 {
-                    b.HasOne("DataAccessLayer.Models.Order", "Order")
-                        .WithMany("OrderItems")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("DataAccessLayer.Models.ShoppingCart", "ShoppingCart")
+                        .WithMany()
+                        .HasForeignKey("ShoppingCartId");
 
-                    b.HasOne("DataAccessLayer.Models.Product", "Product")
-                        .WithMany("orderItems")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Order");
-
-                    b.Navigation("Product");
+                    b.Navigation("ShoppingCart");
                 });
 
             modelBuilder.Entity("DataAccessLayer.Models.Product", b =>
@@ -482,29 +450,24 @@ namespace DataAccessLayer.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("ProductShoppingCart", b =>
+                {
+                    b.HasOne("DataAccessLayer.Models.Product", null)
+                        .WithMany()
+                        .HasForeignKey("ShoppingCartId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DataAccessLayer.Models.ShoppingCart", null)
+                        .WithMany()
+                        .HasForeignKey("ShoppingCartsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("DataAccessLayer.Models.Category", b =>
                 {
                     b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("DataAccessLayer.Models.Identity.ApplicationUser", b =>
-                {
-                    b.Navigation("Orders");
-                });
-
-            modelBuilder.Entity("DataAccessLayer.Models.Order", b =>
-                {
-                    b.Navigation("OrderItems");
-                });
-
-            modelBuilder.Entity("DataAccessLayer.Models.Product", b =>
-                {
-                    b.Navigation("orderItems");
-                });
-
-            modelBuilder.Entity("DataAccessLayer.Models.ShoppingCart", b =>
-                {
-                    b.Navigation("OrderList");
                 });
 #pragma warning restore 612, 618
         }

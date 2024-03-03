@@ -1,0 +1,45 @@
+﻿@model FeedBack  // Assuming Product model has properties like Name, Description, StockQuantity, Price, Img, and CategoryId
+@{
+    var Categories = ViewData["Category"] as List<Category>;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/Admin/AddProduct.css">
+    <link rel="stylesheet" href="~/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
+    <title>FeedBack</title>
+</head>
+<body>
+    <header>
+        <h1>Feed Back</h1>
+    </header>
+
+    <nav>
+        <a href="/Admin">Home</a>
+        <a href="/Admin/Products">Products</a>
+        <a href="/Admin/Categories">Categories</a>
+        <!-- Add more links as needed -->
+    </nav>
+
+    <div class="form-container">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="Name" value="@Model.Name" required>
+
+            <label for="Description">Email:</label>
+            <textarea id="Description" name="Description" rows="1" required readonly>@Model.Email</textarea>
+
+            <label for="Description">Subject:</label>
+            <textarea id="Description" name="Description" rows="1" required readonly>@Model.Subject</textarea>
+
+            <label for="Description">Subject:</label>
+            <textarea id="Description" name="Description" rows="6" required readonly>@Model.Massege</textarea>
+    </div>
+</body>
+</html>

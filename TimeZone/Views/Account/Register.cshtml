@@ -1,4 +1,4 @@
-﻿@model BusinessLogicLayer.ViewModels.LoginViewModel;
+﻿@model BusinessLogicLayer.ViewModels.RegisterViewModel;
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +24,7 @@
     <header>
 
         <div class="header-img">
-            <img src="Images/Home/timezone.png">
+            <img src="/Images/Home/timezone.png">
         </div>
 
         <div class="header-nav">
@@ -32,70 +32,120 @@
                 <a href="/Home">Home</a>
                 <a href="/Shop">Shop</a>
                 <a href="/About">About</a>
-                <a href="#">Contact</a>
+                <a href="Contact">Contact</a>
             </nav>
         </div>
 
         <div class="header-icons">
             <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
-            <a href="/Account"> <i class="fa-regular fa-user"></i></a>
-            <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+            @if (!_signInManager.IsSignedIn(User))
+            {
+                <a href="/Account/Login"> <i class="fa-regular fa-user"></i></a>
+            }
+            else
+            {
+                <a href="/Account/LogOut"><i class="fa-solid fa-right-from-bracket"></i></a>
+            }
+            <a href="/Cart"><i class="fa-solid fa-cart-shopping"></i></a>
+            @if (User.IsInRole("Admin"))
+            {
+                <a href="/Admin"> <i class="fa-solid fa-hammer"></i></a>
+            }
         </div>
 
     </header>
 
 
     <div class="shop-landing-page">
-        <h1>Login</h1>
+        <h1>Register</h1>
     </div>
 
 
-  <div class="login-container">
-    <div class="shape">
-        <div class="text">
-        <h2 style="text-align:center;">New To Our Shop ?</h2>
-        <span>If you don't have an account, sign up and enjoy a seamless experience with our services.</span>
-                <a href="#">
+    <div class="login-container">
+        <div class="shape" style="background: linear-gradient(to bottom, #1a5276, #0e2a38);">
+            <div class="text">
+                <h2 style="text-align:center;">Already Have Account ?</h2>
+                <span>If you don't have an account, sign up and enjoy a seamless experience with our services.</span>
+                <a href="/Account/Login">
                     <div class="btn">
-                        Create An Account
+                        Login Now
                     </div>
                 </a>
+            </div>
         </div>
-    </div>
-     <div class="signin">
+        <div class="signin">
 
-            <h1>
+            <h1 style="margin-top:-65px;">
                 Welcome Back !
                 Please Sign in now
             </h1>
-        <div class="form">
-                <form asp-action="TryLogin" asp-controller="Account" method="post" id="myForm" data-ajax="true" data-ajax-method="post" data-ajax-mode="replace" data-ajax-update="#myForm">
+            <div class="form" style="margin-top:20px;">
+                <form asp-action="TryRegister" asp-controller="Account" method="post" id="myForm" data-ajax="true" data-ajax-method="post" data-ajax-mode="replace" data-ajax-update="#myForm">
                     <div>
-                        <input asp-for="Name" type="text" id="username" name="Name" placeholder="UserName" required>
-                        <div style="color:red; margin-top:20px;">
-                            <span asp-validation-for="Name"></span>
+                        <input asp-for="FirstName" type="text" id="in" name="FirstName" placeholder="FirstName" required>
+                        <div style="color: red; margin-top: 20px;">
+                            <span asp-validation-for="FirstName"></span>
                         </div>
                     </div>
 
                     <div>
-                        <input asp-for="Password" type="password" id="password" name="Password" placeholder="Password" required>
-                        <div style="color:red; margin-top:20px;">
+                        <input asp-for="LastName" type="text" id="in" name="LastName" placeholder="LastName" required>
+                        <div style="color: red; margin-top: 20px;">
+                            <span asp-validation-for="LastName"></span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <input asp-for="UserName" type="text" id="in" name="UserName" placeholder="UserName" required>
+                        <div style="color: red; margin-top: 20px;">
+                            <span asp-validation-for="UserName"></span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <input asp-for="EmailAddress" type="email" id="in" name="EmailAddress" placeholder="Email" required>
+                        <div style="color: red; margin-top: 20px;">
+                            <span asp-validation-for="EmailAddress"></span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <input asp-for="PhoneNumber" type="tel" id="in" name="PhoneNumber" placeholder="Phone Number" required>
+                        <div style="color: red; margin-top: 20px;">
+                            <span asp-validation-for="PhoneNumber"></span>
+                        </div>
+                    </div>
+
+                    
+
+                    <div>
+                        <input asp-for="Password" type="password" id="in" name="Password" placeholder="Password" required>
+                        <div style="color: red; margin-top: 20px;">
                             <span asp-validation-for="Password"></span>
                         </div>
                     </div>
 
-                    <div style="margin-top:30px;">
-                        <input asp-for="RememberMe" type="checkbox" id="RememberMe" name="RememberMe" value="RememberMe" style="width:3%;">
-                        <label asp-for="RememberMe"> RememberMe</label><br>
+                    <div>
+                        <input asp-for="ConfirmPassword" type="password" id="in" name="ConfirmPassword" placeholder="Confirm Password" required>
+                        <div style="color: red; margin-top: 20px;">
+                            <span asp-validation-for="ConfirmPassword"></span>
+                        </div>
                     </div>
 
-                    <button class="login-btn" type="submit">Login</button>
+                   
+
+                    <div style="color: red; margin-top: 20px;">
+                        @Html.ValidationSummary()
+                    </div>
+
+                    <button class="login-btn" type="submit">Register</button>
                 </form>
 
+
+            </div>
         </div>
-       </div>
-        
-  </div>
+
+    </div>
 
 
 

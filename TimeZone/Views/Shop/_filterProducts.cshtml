@@ -1,4 +1,5 @@
-﻿<div class="popular-items">
+﻿
+<div class="popular-items">
     
     <div class="shop-items-space">
         @foreach (var product in Model)
@@ -10,7 +11,7 @@
                 <h4>@product.Name</h4>
                 <h5>$ @product.Price</h5>
                 <div class="overlay"></div>
-                <div class="addtocart"><span>Add To Cart</span></div>
+                <a href="/Cart/AddToCart/@product.Id"><div class="addtocart"><span>Add To Cart</span></div></a>
             </div>
         }
     </div>

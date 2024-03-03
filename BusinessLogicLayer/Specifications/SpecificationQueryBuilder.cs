@@ -21,14 +21,19 @@ namespace BusinessLogicLayer.Specifications
                 query = query.Where(specifications.Criteria);
 
             }
-            
-            if(specifications.Includes!=null)
+
+
+
+            if (specifications.Includes != null)
             {
-                query = specifications.Includes.Aggregate(query,(Current,Include)=>Current.Include(Include));
+                query = specifications.Includes.Aggregate(query, (Current, Include) => Current.Include(Include));
                 // Current is the query and include is the elements of the list (Includes) he iterate on it and add it one by one 
             }
 
-            if(specifications.OrderBy!=null)
+            
+          
+
+            if (specifications.OrderBy!=null)
             {
                 query = query.OrderBy(specifications.OrderBy);
             }

@@ -10,8 +10,8 @@ namespace BusinessLogicLayer.UnitOfWork
 	public interface IUnitOfWork:IDisposable
 	{
 		IProductRepository ProductRepository { get; }
-		public IOrderRepository OrderRepository { get; }
 		public ICategoryRepository CategoryRepository { get; }
+		public IFeedBackRepository FeedBackRepository { get; }
 		public IShoppingCartRepository ShoppingCartRepository { get; }
 		void Commit();
 	}

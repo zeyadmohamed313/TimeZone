@@ -1,19 +1,19 @@
-﻿@model List<Product>;
-@{
-    var Categories = ViewData["Categories"] as List<Category>;
-}
+﻿@model List<BusinessLogicLayer.ViewModels.ProductViewModel>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="~/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/Cart.css" />
     <link rel="stylesheet" href="~/css/Home.css">
-    <link rel="stylesheet" href="~/css/Shop.css"/>
+    <link rel="stylesheet" href="~/css/Shop.css">
+    <link rel="stylesheet" href="~/css/Login.css">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
-    <title>Shopping</title>
+    <title>TimeZone</title>
 </head>
 <body>
 
@@ -21,12 +21,14 @@
         <div class="spinner"></div>
     </div>
 
+
+
     <header>
 
         <div class="header-img">
-            <img src="Images/Home/timezone.png">
+            <img src="/Images/Home/timezone.png">
         </div>
-        
+
         <div class="header-nav">
             <nav>
                 <a href="/Home">Home</a>
@@ -56,77 +58,76 @@
     </header>
 
     <div class="shop-landing-page">
-        <h1>Watch Shop</h1>
+        <h1>Cart</h1>
     </div>
 
 
 
 
 
-   <div class="shop-form">
-    <div class="shop-div">
-        <!-- Filtering Form -->
-        <div>
-        <label class="shop-label" for="CategoryId">Category:</label>
-        <select class="shop-select" id="CategoryId" name="CategoryId">
-            <option value="">All Categories</option>
-            @foreach (var category in Categories)
-            {
-                <option value="@category.Id">@category.Name</option>
-            }
-        </select>
-        </div>
 
-        <div>
-        <label class="shop-label" for="minPrice">Min Price:</label>
-        <input class="shop-input" type="number" id="MinPrice" name="MinPrice" min="0">
-        </div>
+    <div class="cart-container">
+        <h1>Your Shopping Cart</h1>
 
-        <div>
-        <label class="shop-label" for="maxPrice">Max Price:</label>
-            <input class="shop-input" type="number" id="MaxPrice" name="MaxPrice" min="0">
-        </div>
-        <button class="shop-button" style="display:block;" id="applyFilters">Apply Filters</button>
-    </div>
-    </div>
-
-    <div id="product-list" class="product-list">
-        <!-- Display filtered products -->
-        @Html.Partial("_filterProducts")
-    </div>
-
-    <div class="pagination">
-        <!-- Pagination controls -->
-        <!-- You may use a library or implement your own pagination controls -->
-    </div>
-
-   <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            $("#applyFilters").click(function () {
-                var categoryId = $("#CategoryId").val();
-                var minPrice = $("#MinPrice").val();
-                var maxPrice = $("#MaxPrice").val();
-
-                // Option 1: Update partial view using AJAX (example)
-                $.ajax({
-                    url: "/Shop/FilterProducts", // Replace with your controller and action URL
-                    data: {
-                        categoryId: categoryId,
-                        minPrice: minPrice,
-                        maxPrice: maxPrice
-                    },
-                    success: function (data) {
-                        $("#product-list").html(data);
+        @if (Model.Count > 0)
+        {
+            <table class="cart-table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <div class="product-info">
+                                    <img src="data:image/png;base64,@Convert.ToBase64String(item.Img)" alt="Product Image" style="    height: 110px;
+    margin-left: 14px;
+    margin-top: 8px;" />
+                                    <p>@item.Name</p>
+                                </div>
+                            </td>
+                            <td class="price">$@item.Price</td>
+                            <td>
+                                <input type="number" class="quantity" value="@item.Quantity" min="1" />
+                            </td>
+                            <td class="total">$@(item.Price * item.Quantity)</td>
+                            <td>
+                                <form action="/Cart/DeletefromCart" method="post">
+                                    <input type="hidden" name="productId" value="@item.Id" />
+                                    <button type="submit">Remove</button>
+                                </form>
+                            </td>
+                        </tr>
                     }
-                });
+                </tbody>
+            </table>
 
-                // Option 2: Redirect to partial view action with parameters (example)
-                // window.location.href = "/Home/PartialViewWithFilters?categoryId=" + categoryId + "&minPrice=" + minPrice + "&maxPrice=" + maxPrice;
-            });
-        });
-    </script>
+            <div class="cart-total">
+                <p>Total: $<span id="cartTotal">@Model.Sum(item => item.Price * item.Quantity)</span></p>
+            </div>
+
+            <div class="checkout-button">
+                <a href="/Checkout">Proceed to Checkout</a>
+            </div>
+        }
+        else
+        {
+            <p>Your cart is empty.</p>
+        }
+    </div>
+
+
+
+
+
+
 
 
 
@@ -214,7 +215,6 @@
     <div class="floating-icon" id="scrollToTopBtn">
         <img src="/Images/Home/scroll-to-top.png" alt="Scroll to Top">
     </div>
-   
     <script src="~/js/site.js"></script>
 </body>
 </html>

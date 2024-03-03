@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 
 namespace BusinessLogicLayer.Repositories
 {
-	public class OrderRepository:GenericRepository<Order>,IOrderRepository
-	{
-		private readonly AppDbContext _appDbContext;
-		public OrderRepository(AppDbContext appDbContext):base(appDbContext)
-		{
-			_appDbContext = appDbContext;
-		}
-	}
+    public class FeedBackRepository:GenericRepository<FeedBack>,IFeedBackRepository
+    {
+        private readonly AppDbContext _appDbContext;
+        public FeedBackRepository(AppDbContext appDbContext) : base(appDbContext)
+        {
+            _appDbContext = appDbContext;
+        }
+    }
 }

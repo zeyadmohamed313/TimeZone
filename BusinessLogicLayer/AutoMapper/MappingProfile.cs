@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using BusinessLogicLayer.ViewModels;
 using DataAccessLayer.Models;
+using DataAccessLayer.Models.Identity;
 
 namespace BusinessLogicLayer.AutoMapper
 {
@@ -17,6 +18,7 @@ namespace BusinessLogicLayer.AutoMapper
             CreateMap<Product, ProductViewModel>().ReverseMap();
             CreateMap<Category, CategoryViewModel>().ReverseMap();
             CreateMap<Product, Product>().ForAllMembers(opt => opt.Condition((src, dest, srcMember) => srcMember != null));
+            CreateMap<ApplicationUser, RegisterViewModel>().ReverseMap();
         }
     }
 }

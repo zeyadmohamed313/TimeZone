@@ -1,7 +1,4 @@
-﻿@model List<Product>;
-@{
-    var Categories = ViewData["Categories"] as List<Category>;
-}
+﻿@model BusinessLogicLayer.ViewModels.LoginViewModel;
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,24 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="~/css/all.min.css" />
     <link rel="stylesheet" href="~/css/Home.css">
-    <link rel="stylesheet" href="~/css/Shop.css"/>
+    <link rel="stylesheet" href="~/css/Shop.css">
+    <link rel="stylesheet" href="~/css/About.css">
+    <link rel="stylesheet" href="~/css/Login.css">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
-    <title>Shopping</title>
+    <title>Login</title>
 </head>
 <body>
-
     <div id="loadingSpinner" style="display: none;">
         <div class="spinner"></div>
     </div>
 
+
     <header>
 
         <div class="header-img">
-            <img src="Images/Home/timezone.png">
+            <img src="/Images/Home/timezone.png">
         </div>
-        
+
         <div class="header-nav">
             <nav>
                 <a href="/Home">Home</a>
@@ -55,78 +55,65 @@
 
     </header>
 
+
     <div class="shop-landing-page">
-        <h1>Watch Shop</h1>
+        <h1>Login</h1>
     </div>
 
 
-
-
-
-   <div class="shop-form">
-    <div class="shop-div">
-        <!-- Filtering Form -->
-        <div>
-        <label class="shop-label" for="CategoryId">Category:</label>
-        <select class="shop-select" id="CategoryId" name="CategoryId">
-            <option value="">All Categories</option>
-            @foreach (var category in Categories)
-            {
-                <option value="@category.Id">@category.Name</option>
-            }
-        </select>
+  <div class="login-container">
+    <div class="shape">
+        <div class="text">
+        <h2 style="text-align:center;">New To Our Shop ?</h2>
+        <span>If you don't have an account, sign up and enjoy a seamless experience with our services.</span>
+                <a href="/Account/Register">
+                    <div class="btn">
+                        Create An Account
+                    </div>
+                </a>
         </div>
+    </div>
+     <div class="signin">
 
-        <div>
-        <label class="shop-label" for="minPrice">Min Price:</label>
-        <input class="shop-input" type="number" id="MinPrice" name="MinPrice" min="0">
+            <h1>
+                Welcome Back !
+                Please Sign in now
+            </h1>
+        <div class="form">
+                <form asp-action="TryLogin" asp-controller="Account" method="post" id="myForm" data-ajax="true" data-ajax-method="post" data-ajax-mode="replace" data-ajax-update="#myForm">
+                    <div>
+                        <input asp-for="UserName" type="text" id="username" name="UserName" placeholder="UserName" required>
+                        <div style="color:red; margin-top:20px;">
+                            <span asp-validation-for="UserName"></span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <input asp-for="Password" type="password" id="password" name="Password" placeholder="Password" required>
+                        <div style="color:red; margin-top:20px;">
+                            <span asp-validation-for="Password"></span>
+                        </div>
+                    </div>
+
+                    <div style="margin-top:30px;">
+                        <input asp-for="RememberMe" type="checkbox" id="RememberMe" name="RememberMe" value="RememberMe" style="width:3%;">
+                        <label asp-for="RememberMe"> RememberMe</label><br>
+                    </div>
+
+                    <div style="color:red; margin-top:20px;>
+                        @Html.ValidationSummary()
+                    </div>
+
+                    <button class="login-btn" type="submit">Login</button>
+                </form>
+                <a asp-controller="Account" asp-action="ExternalLogin" asp-route-provider="Google" class="btn btn-lg btn-google social-btn" style="background-color: #d94836; color: #ffffff;">
+                    <i class="bi bi-google"></i> Google
+                </a>
         </div>
+       </div>
+        
+  </div>
 
-        <div>
-        <label class="shop-label" for="maxPrice">Max Price:</label>
-            <input class="shop-input" type="number" id="MaxPrice" name="MaxPrice" min="0">
-        </div>
-        <button class="shop-button" style="display:block;" id="applyFilters">Apply Filters</button>
-    </div>
-    </div>
-
-    <div id="product-list" class="product-list">
-        <!-- Display filtered products -->
-        @Html.Partial("_filterProducts")
-    </div>
-
-    <div class="pagination">
-        <!-- Pagination controls -->
-        <!-- You may use a library or implement your own pagination controls -->
-    </div>
-
-   <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            $("#applyFilters").click(function () {
-                var categoryId = $("#CategoryId").val();
-                var minPrice = $("#MinPrice").val();
-                var maxPrice = $("#MaxPrice").val();
-
-                // Option 1: Update partial view using AJAX (example)
-                $.ajax({
-                    url: "/Shop/FilterProducts", // Replace with your controller and action URL
-                    data: {
-                        categoryId: categoryId,
-                        minPrice: minPrice,
-                        maxPrice: maxPrice
-                    },
-                    success: function (data) {
-                        $("#product-list").html(data);
-                    }
-                });
-
-                // Option 2: Redirect to partial view action with parameters (example)
-                // window.location.href = "/Home/PartialViewWithFilters?categoryId=" + categoryId + "&minPrice=" + minPrice + "&maxPrice=" + maxPrice;
-            });
-        });
-    </script>
 
 
 
@@ -214,7 +201,12 @@
     <div class="floating-icon" id="scrollToTopBtn">
         <img src="/Images/Home/scroll-to-top.png" alt="Scroll to Top">
     </div>
-   
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+
+
     <script src="~/js/site.js"></script>
 </body>
 </html>

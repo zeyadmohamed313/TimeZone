@@ -10,7 +10,7 @@ namespace BusinessLogicLayer.ViewModels
     public class LoginViewModel
     {
         [Required]
-        public string Name {  get; set; }
+        public string UserName {  get; set; }
         [Required(ErrorMessage ="Password Must Contain at Least 8 characters")]
         [MinLength(8)]
         

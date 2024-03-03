@@ -48,3 +48,36 @@ window.addEventListener('beforeunload', function (e) {
         loadingSpinner.style.display = 'none';
     }, 3000); // 3000 milliseconds = 3 seconds
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Get elements
+    const cartTable = document.getElementById("cartTable");
+    const cartTotal = document.getElementById("cartTotal");
+
+    // Attach event listener to table for dynamic updates
+    cartTable.addEventListener("input", function (event) {
+        if (event.target.classList.contains("quantity")) {
+            updateCartItem(event.target.closest("tr"));
+        }
+    });
+
+    // Function to update cart item
+    function updateCartItem(row) {
+        const price = parseFloat(row.querySelector(".price").textContent.replace("$", ""));
+        const quantity = parseInt(row.querySelector(".quantity").value);
+        const total = price * quantity;
+        row.querySelector(".total").textContent = `$${total.toFixed(2)}`;
+
+        // Update total price
+        updateTotalPrice();
+    }
+
+    // Function to update total price
+    function updateTotalPrice() {
+        const total = Array.from(cartTable.querySelectorAll(".total"))
+            .map(total => parseFloat(total.textContent.replace("$", "")))
+            .reduce((sum, value) => sum + value, 0);
+
+        cartTotal.textContent = total.toFixed(2);
+    }
+});
