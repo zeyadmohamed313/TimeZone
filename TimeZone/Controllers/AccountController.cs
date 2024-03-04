@@ -182,6 +182,7 @@ namespace PresentationLayer.Controllers
                     if (addToRoleResult.Succeeded)
                     {
                         await _signInManager.SignInAsync(newUser, isPersistent: false);
+                        AssignShoppingCartToUser(newUser.Id);
                     }
                     else
                     {

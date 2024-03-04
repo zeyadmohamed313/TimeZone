@@ -105,10 +105,11 @@
                     </div>
 
                     <button class="login-btn" type="submit">Login</button>
+                    <a asp-controller="Account" asp-action="ExternalLogin" asp-route-provider="Google" class="btn btn-lg btn-google social-btn">
+                        <i class="fa-brands fa-google"></i>
+                    </a>
                 </form>
-                <a asp-controller="Account" asp-action="ExternalLogin" asp-route-provider="Google" class="btn btn-lg btn-google social-btn" style="background-color: #d94836; color: #ffffff;">
-                    <i class="bi bi-google"></i> Google
-                </a>
+                
         </div>
        </div>
         
