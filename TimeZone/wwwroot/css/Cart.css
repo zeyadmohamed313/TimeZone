@@ -33,7 +33,7 @@ h1 {
 
 th, td {
     padding: 12px;
-    text-align: left;
+    text-align: center;
     border-bottom: 1px solid #ddd;
 }
 
@@ -44,7 +44,7 @@ th {
 
 .price, .total {
     min-width: 80px;
-    text-align: right;
+    text-align: center;
 }
 
 .quantity {
