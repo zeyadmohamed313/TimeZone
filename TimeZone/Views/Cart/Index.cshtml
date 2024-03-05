@@ -66,64 +66,9 @@
 
 
 
-    <div class="cart-container">
-        <h1>Your Shopping Cart</h1>
-
-        @if (Model.Count > 0)
-        {
-            <table class="cart-table">
-                <thead>
-                    <tr>
-                        <th>Product</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Total</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>
-                                <div class="product-info">
-                                    <img src="data:image/png;base64,@Convert.ToBase64String(item.Img)" alt="Product Image" style="    height: 110px;
-    margin-left: 14px;
-    margin-top: 8px;" />
-                                    <p>@item.Name</p>
-                                </div>
-                            </td>
-                            <td class="price">$@item.Price</td>
-                            <td>
-                                <input type="number" class="quantity" value="@item.Quantity" min="1" />
-                            </td>
-                            <td class="total">$@(item.Price * item.Quantity)</td>
-                            <td>
-                                <form action="/Cart/DeletefromCart" method="post">
-                                    <input type="hidden" name="productId" value="@item.Id" />
-                                    <button type="submit">Remove</button>
-                                </form>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-
-            <div class="cart-total">
-                <p>Total: $<span id="cartTotal">@Model.Sum(item => item.Price * item.Quantity)</span></p>
-            </div>
-
-            <div class="checkout-button">
-                <a href="/Checkout">Proceed to Checkout</a>
-            </div>
-        }
-        else
-        {
-            <p>Your cart is empty.</p>
-        }
-    </div>
-
-
+   <div id="cart-body">
+       @Html.Partial("_CartBody");
+   </div>
 
 
 
@@ -216,5 +161,29 @@
         <img src="/Images/Home/scroll-to-top.png" alt="Scroll to Top">
     </div>
     <script src="~/js/site.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+
+    <script>
+    $(document).ready(function () {
+        $("#cart-body").on("submit", ".remove-from-cart-form", function (e) {
+            e.preventDefault(); // Prevent the default form submission
+
+            var form = $(this);
+
+            $.ajax({
+                url: form.attr("action"),
+                type: form.attr("method"),
+                data: form.serialize(),
+                success: function (data) {
+                    $("#cart-body").html(data);
+                },
+                error: function (error) {
+                    console.error("Error removing item from cart:", error);
+                }
+            });
+        });
+    });
+</script>
+
 </body>
 </html>

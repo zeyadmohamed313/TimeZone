@@ -5,7 +5,7 @@
         @foreach (var product in Model)
         {
             <div class="item">
-                <a href="#">
+                <a href="/Cart/AddToCart/@product.Id">
                     <img src="data:image/png;base64,@Convert.ToBase64String(product.Img)" alt="Product Image" />
                 </a>
                 <h4>@product.Name</h4>

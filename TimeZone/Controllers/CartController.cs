@@ -21,12 +21,7 @@ namespace PresentationLayer.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var userId = GetCurrentUserId();
-            var Specifications = new ShoppingCartWithUserId(userId);
-            var ShoppingCart = await _unitOfWork.ShoppingCartRepository.GetWithSpecifications(Specifications);
-            var products = ShoppingCart[0].OrderList.ToList(); // First Shopping Cart
-            var ProductVm = _mapper.Map<List<ProductViewModel>>(products);
-            return View(ProductVm);
+            return View(await GetAllItemsInMyCart());
         }
         
         public async Task<IActionResult> AddToCart(int id)
@@ -47,7 +42,16 @@ namespace PresentationLayer.Controllers
             var userId = GetCurrentUserId();
             await _unitOfWork.ShoppingCartRepository.DeleteFromCart(userId, ProductId);
             _unitOfWork.Commit();
-            return RedirectToAction("Index");
+            return PartialView("_CartBody", await GetAllItemsInMyCart());
+        }
+        private async Task<List<ProductViewModel>> GetAllItemsInMyCart()
+        {
+            var userId = GetCurrentUserId();
+            var Specifications = new ShoppingCartWithUserId(userId);
+            var ShoppingCart = await _unitOfWork.ShoppingCartRepository.GetWithSpecifications(Specifications);
+            var products = ShoppingCart[0].OrderList.ToList(); // First Shopping Cart
+            var ProductVm = _mapper.Map<List<ProductViewModel>>(products);
+            return ProductVm;
         }
     }
 }

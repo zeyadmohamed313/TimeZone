@@ -13,6 +13,7 @@ namespace BusinessLogicLayer.UnitOfWork
 		public ICategoryRepository CategoryRepository { get; }
 		public IFeedBackRepository FeedBackRepository { get; }
 		public IShoppingCartRepository ShoppingCartRepository { get; }
+		public IEmailSender EmailSender { get; }
 		void Commit();
 	}
 }

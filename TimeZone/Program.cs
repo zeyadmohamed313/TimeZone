@@ -27,6 +27,7 @@ builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IFeedBackRepository, FeedBackRepository>();
 builder.Services.AddScoped<IShoppingCartRepository, ShoppingCartRepository>();
+builder.Services.AddScoped<IEmailSender,EmailSenderRepository>();
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 // Add services to the container.
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
@@ -57,7 +58,13 @@ builder.Services.AddAuthentication(
         options.LogoutPath = "/Account/Logout";
         options.ReturnUrlParameter = "returnUrl";
     }
-    )
+    ).AddMicrosoftAccount(options =>
+    {
+        IConfigurationSection googleAuthSection = builder.Configuration.GetSection("Authentication:Microsoft");
+
+        options.ClientId = googleAuthSection["ClientId"];
+        options.ClientSecret = googleAuthSection["ClientSecret"];
+    })
 
                  .AddGoogle(options =>
                  {

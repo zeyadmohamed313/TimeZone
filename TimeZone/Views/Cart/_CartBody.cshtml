@@ -1,0 +1,59 @@
+﻿@model List<BusinessLogicLayer.ViewModels.ProductViewModel>
+<div class="cart-container">
+    <h1>Your Shopping Cart</h1>
+
+    @if (Model.Count > 0)
+    {
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <div class="product-info">
+                                <img src="data:image/png;base64,@Convert.ToBase64String(item.Img)" alt="Product Image" style="    height: 110px;
+    margin-left: 14px;
+    margin-top: 8px;" />
+                                <p>@item.Name</p>
+                            </div>
+                        </td>
+                        <td class="price">$@item.Price</td>
+                        <td>
+                            <input type="number" class="quantity" value="@item.Quantity" min="1" />
+                        </td>
+                        <td class="total">$@(item.Price * item.Quantity)</td>
+                        <td>
+                           <form action="/Cart/DeleteFromCart" method="post" class="remove-from-cart-form">
+    <input type="hidden" name="productId" value="@item.Id" />
+    <button type="submit">Remove</button>
+</form>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div class="cart-total">
+            <p>Total: $<span id="cartTotal"></span></p>
+        </div>
+
+        <div class="checkout-button">
+            <a href="/Checkout">Proceed to Checkout</a>
+        </div>
+    }
+    else
+    {
+        <p>Your cart is empty.</p>
+    }
+</div>
+

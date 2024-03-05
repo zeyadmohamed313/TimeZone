@@ -105,10 +105,19 @@
                     </div>
 
                     <button class="login-btn" type="submit">Login</button>
-                    <a asp-controller="Account" asp-action="ExternalLogin" asp-route-provider="Google" class="btn btn-lg btn-google social-btn">
-                        <i class="fa-brands fa-google"></i>
-                    </a>
+                    
                 </form>
+                <div class="google" style="  display:flex; margin-top: 30px;
+    margin-left: 175px;">
+                <a asp-controller="Account" asp-action="ExternalLogin" asp-route-provider="Google" class="btn btn-lg btn-google social-btn">
+                        <i class="fa-brands fa-google fa-2xl" style="color: #f00000;"></i>
+                    </a>
+
+                    <a asp-controller="Account" asp-action="ExternalLogin" asp-route-provider="Microsoft" class="btn btn-lg btn-google social-btn" style="margin-left:30px">
+                        <i class="fa-brands fa-microsoft fa-2xl" style="color: #3fc6ff;"></i>
+                    </a>
+                </div>
+                <a href="/Account/ForgetPassword"><p>Forget Password?</p></a>
                 
         </div>
        </div>
