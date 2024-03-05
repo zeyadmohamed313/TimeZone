@@ -578,3 +578,22 @@ header {
     }
 }
 
+
+
+
+.checkout-buttonfinal {
+    background-color: #343a40; /* Dark background color */
+    color: #ffffff; /* Text color */
+    padding: 10px 20px; /* Adjust padding as needed */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width:200px;
+    height:70px;
+    margin-left:350px;/* Add smooth transition effect */
+}
+
+    .checkout-buttonfinal:hover {
+        background-color: #555b62; /* Darker background color on hover */
+    }

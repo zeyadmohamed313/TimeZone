@@ -20,7 +20,7 @@ namespace DataAccessLayer.Models
 		public ApplicationUser User { get; set; }
 		
 		public List<Product>? OrderList { get; set; }
-		public decimal GetTotalPrice => OrderList!=null? OrderList.Where(orderItem => orderItem != null)
+		public decimal GetTotalPrice => OrderList!=null? OrderList
                     .Sum(orderItem => orderItem.Price):0;    
 	}
 	

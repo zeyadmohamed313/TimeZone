@@ -15,6 +15,7 @@ using System.Text;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.Extensions.Options;
+using BusinessLogicLayer.ViewModels;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +29,7 @@ builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IFeedBackRepository, FeedBackRepository>();
 builder.Services.AddScoped<IShoppingCartRepository, ShoppingCartRepository>();
 builder.Services.AddScoped<IEmailSender,EmailSenderRepository>();
+builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("StripeSettings"));
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 // Add services to the container.
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
