@@ -1,7 +1,5 @@
 ﻿@model List<BusinessLogicLayer.ViewModels.ProductViewModel>
-@{
-    var sh = ViewData["Sh"] as ShoppingCart;
-}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -70,7 +68,7 @@
 
 
    <div id="cart-body">
-       @Html.Partial("_CartBody");
+       @await Html.PartialAsync("_CartBody", new ViewDataDictionary( ViewData));
    </div>
 
 

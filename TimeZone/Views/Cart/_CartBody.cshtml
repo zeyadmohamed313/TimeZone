@@ -1,4 +1,7 @@
 ﻿@model List<BusinessLogicLayer.ViewModels.ProductViewModel>
+@{
+    var tot = ViewData["SH"] as ShoppingCart;
+}
 <div class="cart-container">
     <h1>Your Shopping Cart</h1>
 
@@ -45,12 +48,26 @@
         </table>
 
         <div class="cart-total">
-            <p>Total: $<span id="cartTotal">16.25</span></p>
+            <p>Total: $<span id="cartTotal">@tot.GetTotalPrice</span></p>
         </div>
 
         <form method="get" action="Cart/CreateCheckOutSession">
-            <input type="hidden" name="Total" value="16.25">
-            <button type="submit" class="checkout-buttonfinal">Proceed to Checkout</button>
+            <input type="hidden" name="Total" value="@tot.GetTotalPrice">
+            <button style="background-color: #343a40; 
+                      color: #ffffff; 
+                      padding: 10px 20px; 
+                      border: none;
+                      border-radius: 5px;
+                      cursor: pointer;
+                      transition: background-color 0.3s;
+                      width: 200px;
+                      height: 70px;
+                      margin-left: 350px;"
+                    onmouseover="this.style.backgroundColor='#2c3136';" 
+                    onmouseout="this.style.backgroundColor='#343a40';">
+                Proceed to Checkout
+            </button>
+
         </form>
     }
     else
