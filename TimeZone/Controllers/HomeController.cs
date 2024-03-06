@@ -23,7 +23,7 @@ namespace TimeZone.Controllers
 			_mapper = mapper;
 		}
 
-		//[ResponseCache(Duration = 3600)]
+		[ResponseCache(Duration = 3600)]
 		[AllowAnonymous]
 		public async Task<IActionResult> Index()
 		{
