@@ -14,7 +14,7 @@ namespace PresentationLayer.Controllers
         {
             _unitOfWork = unitOfWork;
         }
-		//[ResponseCache(Duration = 3600)]
+		[ResponseCache(Duration = 3600)]
 		public async Task<IActionResult> Index()
         {
 
@@ -25,7 +25,7 @@ namespace PresentationLayer.Controllers
         }
 
         [HttpGet]
-		//[ResponseCache(Duration = 3600)]
+		[ResponseCache(Duration = 3600)]
 		public async Task<IActionResult> FilterProducts(int? CategoryId , decimal? MinPrice ,decimal? MaxPrice 
             ,bool SortAsc = true)
         {
